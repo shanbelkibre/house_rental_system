@@ -1,0 +1,16 @@
+nohup: ignoring input
+
+> house-rental-frontend@1.0.0 dev
+> vite
+
+Re-optimizing dependencies because lockfile has changed
+
+  VITE v5.4.21  ready in 2285 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+1:28:34 PM [vite] page reload index.html
+1:28:57 PM [vite] hmr update /src/index.css
+1:30:09 PM [vite] hmr update /src/components/Navbar.jsx, /src/index.css
+1:30:28 PM [vite] hmr update /src/pages/HomePage.jsx, /src/index.css
+1:30:43 PM [vite] hmr update /src/App.jsx, /src/index.css
