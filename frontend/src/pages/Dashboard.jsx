@@ -14,6 +14,7 @@ import {
 // --- Owner Dashboard ---
 const OwnerDashboard = () => {
   const [houses, setHouses] = useState([]);
+  const [houseTotal, setHouseTotal] = useState(0);
   const [requests, setRequests] = useState([]);
   const [subscription, setSubscription] = useState(null);
 
@@ -22,10 +23,14 @@ const OwnerDashboard = () => {
       .then((res) => setSubscription(res.data))
       .catch(console.error);
     getMyHouses()
-      .then((res) => setHouses(res.data.slice(0, 5)))
+      .then((res) => {
+        const items = res.data?.data || [];
+        setHouses(items.slice(0, 5));
+        setHouseTotal(res.data?.total ?? items.length);
+      })
       .catch(console.error);
     getOwnerRequests()
-      .then((res) => setRequests(res.data))
+      .then((res) => setRequests(res.data?.data || []))
       .catch(console.error);
   }, []);
 
@@ -56,12 +61,12 @@ const OwnerDashboard = () => {
         <div className="stat-card">
           <h3>Subscription Status</h3>
           <div className="value">
-            {subscription?.status === "active" ? "✅ Active" : "❌ Expired"}
+            {subscription?.is_active ? "✅ Active" : "❌ Expired"}
           </div>
         </div>
         <div className="stat-card">
           <h3>Total Listings</h3>
-          <div className="value">{houses.length}</div>
+          <div className="value">{houseTotal}</div>
         </div>
         <div className="stat-card">
           <h3>Pending Requests</h3>
@@ -147,7 +152,7 @@ const RenterDashboard = () => {
 
   useEffect(() => {
     getMyRequests()
-      .then((res) => setRequests(res.data))
+      .then((res) => setRequests(res.data?.data || []))
       .catch(console.error);
   }, []);
 
@@ -215,20 +220,20 @@ const AdminDashboard = () => {
       <div className="stats-grid">
         <div className="stat-card">
           <h3>Total Users</h3>
-          <div className="value">{stats.totalUsers || 0}</div>
+          <div className="value">{stats.total_users || 0}</div>
         </div>
         <div className="stat-card">
           <h3>Total Houses</h3>
-          <div className="value">{stats.totalHouses || 0}</div>
+          <div className="value">{stats.total_houses || 0}</div>
         </div>
         <div className="stat-card">
           <h3>Total Requests</h3>
-          <div className="value">{stats.totalRequests || 0}</div>
+          <div className="value">{stats.total_requests || 0}</div>
         </div>
         <div className="stat-card">
           <h3>Revenue</h3>
           <div className="value" style={{ color: "#059669" }}>
-            {stats.revenue || 0} ETB
+            {stats.total_payments || 0} ETB
           </div>
         </div>
       </div>

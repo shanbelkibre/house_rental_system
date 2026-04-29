@@ -37,7 +37,8 @@ class User extends Authenticatable
         'role',
         'phone',
         'profile_image',
-        'is_verified'
+        'is_verified',
+        'is_suspended'
     ];
     
     /**
@@ -56,6 +57,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'is_verified' => 'boolean',
+        'is_suspended' => 'boolean',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
@@ -150,6 +152,14 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->role === 'admin';
+    }
+
+    /**
+     * Check if user is suspended.
+     */
+    public function isSuspended()
+    {
+        return (bool) $this->is_suspended;
     }
     
     /**

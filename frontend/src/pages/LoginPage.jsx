@@ -1,23 +1,25 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import { Input, Button, Alert } from '../components/UI';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { Input, Button, Alert } from "../components/UI";
 
 export default function LoginPage() {
   const { login, loading } = useAuth();
   const navigate = useNavigate();
-  const [form, setForm]     = useState({ email: '', password: '' });
-  const [error, setError]   = useState('');
+  const [form, setForm] = useState({ email: "", password: "" });
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
     try {
       const data = await login(form.email, form.password);
-      if (data.user.role === 'admin') navigate('/admin');
-      else navigate('/');
+      if (data.user.role === "admin") navigate("/admin");
+      else navigate("/");
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed');
+      const msgs = err.response?.data?.errors;
+      if (msgs) setError(Object.values(msgs).flat().join(" "));
+      else setError(err.response?.data?.message || "Login failed");
     }
   };
 
@@ -55,8 +57,13 @@ export default function LoginPage() {
         </form>
 
         <p className="text-center text-sm text-gray-500">
-          Don't have an account?{' '}
-          <Link to="/register" className="text-blue-600 font-medium hover:underline">Register</Link>
+          Don't have an account?{" "}
+          <Link
+            to="/register"
+            className="text-blue-600 font-medium hover:underline"
+          >
+            Register
+          </Link>
         </p>
       </div>
     </div>

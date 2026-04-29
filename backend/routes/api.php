@@ -79,10 +79,20 @@ Route::middleware('auth:sanctum')->group(function () {
         // Dashboard & Statistics
         Route::get('/dashboard', [AdminController::class, 'dashboard']);
         Route::get('/report', [AdminController::class, 'report']);
+        Route::get('/reports', [AdminController::class, 'reports']);
+        Route::post('/reports', [AdminController::class, 'createReport']);
+        Route::get('/reports/{id}', [AdminController::class, 'showReport']);
+
+        // Subscription Plans
+        Route::get('/subscription-plans', [AdminController::class, 'subscriptionPlans']);
+        Route::post('/subscription-plans', [AdminController::class, 'createSubscriptionPlan']);
+        Route::put('/subscription-plans/{id}', [AdminController::class, 'updateSubscriptionPlan']);
+        Route::delete('/subscription-plans/{id}', [AdminController::class, 'deleteSubscriptionPlan']);
         
         // User Management
         Route::get('/users', [AdminController::class, 'users']);
         Route::put('/users/{id}/verify', [AdminController::class, 'verifyUser']);
+        Route::put('/users/{id}/suspend', [AdminController::class, 'suspendUser']);
         Route::delete('/users/{id}', [AdminController::class, 'deleteUser']);
         
         // House Management
@@ -90,5 +100,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/all-houses', [AdminController::class, 'allHouses']);
         Route::put('/houses/{id}/approve', [AdminController::class, 'approveHouse']);
         Route::delete('/houses/{id}/reject', [AdminController::class, 'rejectHouse']);
+        Route::delete('/houses/{id}', [AdminController::class, 'removeHouse']);
     });
 });
+

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
+
 class AuthController extends Controller
 {
     // ========== REGISTER ==========
@@ -17,11 +18,12 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|min:6',
+            'password' => 'required|string|min:6|confirmed',
             'role' => 'required|in:renter,owner',
             'phone' => 'nullable|string|max:20'
         ]);
 
+        
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -57,6 +59,12 @@ class AuthController extends Controller
         ]);
 
         $user = User::where('email', $request->email)->first();
+
+        if ($user && $user->isSuspended()) {
+            return response()->json([
+                'message' => 'Your account is suspended. Please contact support.'
+            ], 403);
+        }
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
