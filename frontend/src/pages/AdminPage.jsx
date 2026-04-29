@@ -18,6 +18,7 @@ import {
   updateSubscriptionPlan,
   verifyAdminUser,
 } from "../services/api";
+
 import {
   Alert,
   Badge,
@@ -436,6 +437,7 @@ export default function AdminPage() {
 
   const paymentMethods = report?.payment_methods || [];
   const dailyRevenue = report?.daily_revenue || [];
+
 
   return (
     <div className="max-w-7xl mx-auto px-4 pt-28 pb-10">
