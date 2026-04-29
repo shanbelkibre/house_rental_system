@@ -51,6 +51,7 @@ function toIsoDateInput(v) {
   const dd = String(d.getDate()).padStart(2, "0");
   return `${yyyy}-${mm}-${dd}`;
 }
+import { toStorageUrl } from "../utils/media";
 
 function money(v) {
   const n = Number(v || 0);
@@ -980,9 +981,7 @@ export default function AdminPage() {
                       </div>
                     ) : (
                       (pendingRes?.data || []).map((h) => {
-                        const img = h.images?.[0]?.image_path
-                          ? `http://localhost:8000/storage/${h.images[0].image_path}`
-                          : null;
+                        const img = toStorageUrl(h.images?.[0]?.image_path);
                         return (
                           <div
                             key={h.id}
@@ -1056,9 +1055,7 @@ export default function AdminPage() {
                       <p className="text-sm text-gray-400">No houses found.</p>
                     ) : (
                       (allHousesRes?.data || []).map((h) => {
-                        const img = h.images?.[0]?.image_path
-                          ? `http://localhost:8000/storage/${h.images[0].image_path}`
-                          : null;
+                        const img = toStorageUrl(h.images?.[0]?.image_path);
                         return (
                           <div
                             key={h.id}

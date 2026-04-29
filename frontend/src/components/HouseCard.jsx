@@ -1,10 +1,9 @@
-import { Link } from 'react-router-dom';
-import { Badge } from './UI';
+import { Link } from "react-router-dom";
+import { Badge } from "./UI";
+import { toStorageUrl } from "../utils/media";
 
 export default function HouseCard({ house }) {
-  const imgSrc = house.images?.[0]?.image_path
-    ? `http://localhost:8000/storage/${house.images[0].image_path}`
-    : null;
+  const imgSrc = toStorageUrl(house.images?.[0]?.image_path);
 
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow group">
@@ -17,19 +16,23 @@ export default function HouseCard({ house }) {
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-5xl text-gray-300">🏠</div>
+          <div className="w-full h-full flex items-center justify-center text-5xl text-gray-300">
+            🏠
+          </div>
         )}
         <div className="absolute top-3 left-3">
           <Badge
-            label={house.status === 'available' ? 'Available' : 'Rented'}
-            color={house.status === 'available' ? 'green' : 'red'}
+            label={house.status === "available" ? "Available" : "Rented"}
+            color={house.status === "available" ? "green" : "red"}
           />
         </div>
       </div>
 
       {/* Content */}
       <div className="p-4 space-y-2">
-        <h3 className="font-semibold text-gray-800 text-base line-clamp-1">{house.title}</h3>
+        <h3 className="font-semibold text-gray-800 text-base line-clamp-1">
+          {house.title}
+        </h3>
 
         <p className="text-sm text-gray-500 flex items-center gap-1">
           <span>📍</span> {house.location}
@@ -40,7 +43,9 @@ export default function HouseCard({ house }) {
             ETB {Number(house.price).toLocaleString()}
             <span className="text-gray-400 font-normal text-sm">/mo</span>
           </span>
-          <span className="text-sm text-gray-500">🛏 {house.rooms} room{house.rooms !== 1 ? 's' : ''}</span>
+          <span className="text-sm text-gray-500">
+            🛏 {house.rooms} room{house.rooms !== 1 ? "s" : ""}
+          </span>
         </div>
 
         {house.owner && (

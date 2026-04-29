@@ -19,6 +19,7 @@ import MyRequestsPage from "./pages/MyRequestsPage";
 import MyVisitsPage from "./pages/MyVisitsPage";
 import NotificationsPage from "./pages/NotificationsPage";
 import MyAgreementsPage from "./pages/MyAgreementsPage";
+import DesignProHero from "./pages/DesignProHero";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <main className="flex-1">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/designpro" element={<DesignProHero />} />
             <Route path="/houses" element={<HousesPage />} />
             <Route path="/houses/:id" element={<HouseDetailPage />} />
             <Route path="/login" element={<LoginPage />} />
