@@ -135,3 +135,8 @@ export function Pagination({ meta, onPage }) {
     </div>
   );
 }
+
+export { default as ImageUploader } from './ImageUploader';
+export { default as ImageGallery } from './ImageGallery';
+export { default as UserAvatar } from './UserAvatar';
+export { default as Dropzone } from './Dropzone';

@@ -17,6 +17,11 @@ class HouseController extends Controller
             ->where('is_approved', true)
             ->where('status', 'available');
 
+        // Filter by title (Name)
+        if ($request->has('title') && $request->title !== '') {
+            $query->where('title', 'like', '%' . $request->title . '%');
+        }
+
         // Filter by price
         if ($request->has('min_price')) {
             $query->where('price', '>=', $request->min_price);
@@ -86,7 +91,12 @@ class HouseController extends Controller
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
             'location' => 'required|string',
-            'rooms' => 'required|integer|min:1'
+            'rooms' => 'required|integer|min:1',
+            'bathrooms' => 'required|integer|min:1',
+            'area' => 'nullable|integer|min:1',
+            'type' => 'required|string',
+            'amenities' => 'nullable|array',
+            'availability_date' => 'nullable|date'
         ]);
 
         $house = House::create([
@@ -96,6 +106,11 @@ class HouseController extends Controller
             'price' => $request->price,
             'location' => $request->location,
             'rooms' => $request->rooms,
+            'bathrooms' => $request->bathrooms,
+            'area' => $request->area,
+            'type' => $request->type,
+            'amenities' => $request->amenities,
+            'availability_date' => $request->availability_date,
             'status' => 'available',
             'is_approved' => false  // Admin must approve
         ]);
@@ -125,11 +140,17 @@ class HouseController extends Controller
             'price' => 'sometimes|numeric|min:0',
             'location' => 'sometimes|string',
             'rooms' => 'sometimes|integer|min:1',
+            'bathrooms' => 'sometimes|integer|min:1',
+            'area' => 'nullable|integer|min:1',
+            'type' => 'sometimes|string',
+            'amenities' => 'nullable|array',
+            'availability_date' => 'nullable|date',
             'status' => 'sometimes|in:available,rented'
         ]);
 
         $house->update($request->only([
-            'title', 'description', 'price', 'location', 'rooms', 'status'
+            'title', 'description', 'price', 'location', 'rooms', 'status',
+            'bathrooms', 'area', 'type', 'amenities', 'availability_date'
         ]));
 
         return response()->json([
@@ -177,6 +198,54 @@ class HouseController extends Controller
             'message' => 'Image uploaded',
             'image' => $image
         ], 201);
+    }
+
+    // ========== UPLOAD MULTIPLE HOUSE IMAGES ==========
+    public function uploadMultipleImages(Request $request, $id)
+    {
+        $house = House::where('owner_id', $request->user()->id)->findOrFail($id);
+
+        $request->validate([
+            'images' => 'required|array',
+            'images.*.file' => 'required|image|mimes:jpeg,png,jpg|max:5120'
+        ]);
+
+        $uploadedImages = [];
+        foreach ($request->images as $imageData) {
+            $path = $imageData['file']->store('houses', 'public');
+            
+            $image = $house->images()->create([
+                'image_path' => $path
+            ]);
+            $uploadedImages[] = $image;
+        }
+
+        return response()->json([
+            'message' => 'Images uploaded successfully',
+            'images' => $uploadedImages
+        ], 201);
+    }
+
+    // ========== UPLOAD LICENSE / KARTA ==========
+    public function uploadLicense(Request $request, $id)
+    {
+        $house = House::where('owner_id', $request->user()->id)->findOrFail($id);
+
+        $request->validate([
+            'license_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:5120'
+        ]);
+
+        if ($house->license_image) {
+            Storage::disk('public')->delete($house->license_image);
+        }
+
+        $path = $request->file('license_image')->store('houses/licenses', 'public');
+        $house->update(['license_image' => $path]);
+
+        return response()->json([
+            'message' => 'License document uploaded successfully',
+            'house' => $house
+        ]);
     }
 
     // ========== DELETE HOUSE IMAGE ==========

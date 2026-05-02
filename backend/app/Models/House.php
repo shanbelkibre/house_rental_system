@@ -10,7 +10,14 @@ class House extends Model
     
     protected $fillable = [
         'owner_id', 'title', 'description', 'price', 
-        'location', 'rooms', 'status', 'is_approved'
+        'location', 'rooms', 'status', 'is_approved',
+        'bathrooms', 'area', 'type', 'amenities', 'availability_date',
+        'license_image'
+    ];
+    
+    protected $casts = [
+        'amenities' => 'array',
+        'availability_date' => 'date',
     ];
     
     public function owner()

@@ -22,6 +22,24 @@ export const uploadHouseImage = (id, formData) =>
   });
 export const deleteHouseImage = (houseId, imageId) =>
   api.delete(`/houses/${houseId}/images/${imageId}`);
+
+export const uploadMultipleHouseImages = (houseId, formData, onUploadProgress) =>
+  api.post(`/houses/${houseId}/images/multiple`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+    onUploadProgress,
+  });
+
+export const uploadLicenseImage = (houseId, formData) =>
+  api.post(`/houses/${houseId}/license`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+
+export const reorderImages = (houseId, imageIds) =>
+  api.put(`/houses/${houseId}/images/reorder`, { image_ids: imageIds });
+
+export const setPrimaryImage = (houseId, imageId) =>
+  api.put(`/houses/${houseId}/images/${imageId}/primary`);
+
 export const getMyHouses = () => api.get("/my-houses");
 
 // ===================== Requests =====================

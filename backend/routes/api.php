@@ -40,6 +40,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/houses/{id}', [HouseController::class, 'update']);
     Route::delete('/houses/{id}', [HouseController::class, 'destroy']);
     Route::post('/houses/{id}/images', [HouseController::class, 'uploadImage']);
+    Route::post('/houses/{id}/images/multiple', [HouseController::class, 'uploadMultipleImages']);
+    Route::post('/houses/{id}/license', [HouseController::class, 'uploadLicense']);
     Route::delete('/houses/{houseId}/images/{imageId}', [HouseController::class, 'deleteImage']);
     Route::get('/my-houses', [HouseController::class, 'myHouses']);
 
