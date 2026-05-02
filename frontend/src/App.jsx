@@ -12,6 +12,7 @@ import RegisterPage from "./pages/RegisterPage";
 import Dashboard from "./pages/Dashboard";
 import ProfilePage from "./pages/ProfilePage";
 import MyHousesPage from "./pages/MyHousesPage";
+import CreateHousePage from "./pages/CreateHousePage";
 import OwnerRequestsPage from "./pages/OwnerRequestsPage";
 import SubscriptionPage from "./pages/SubscriptionPage";
 import AdminPage from "./pages/AdminPage";
@@ -40,6 +41,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/my-houses" element={<MyHousesPage />} />
+              <Route path="/create-house" element={<CreateHousePage />} />
               <Route path="/owner-requests" element={<OwnerRequestsPage />} />
               <Route path="/subscription" element={<SubscriptionPage />} />
               <Route path="/my-requests" element={<MyRequestsPage />} />
