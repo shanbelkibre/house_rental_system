@@ -4,9 +4,13 @@ import { useAuth } from "../context/AuthContext";
 import { Input, Button, Alert, Select } from "../components/UI";
 
 export default function RegisterPage() {
+  
   const { register, loading } = useAuth();
+
   const navigate = useNavigate();
+
   const [form, setForm] = useState({
+
     name: "",
     email: "",
     password: "",
@@ -14,6 +18,7 @@ export default function RegisterPage() {
     role: "renter",
     phone: "",
   });
+
   const [error, setError] = useState("");
 
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
@@ -30,6 +35,7 @@ export default function RegisterPage() {
       else setError(err.response?.data?.message || "Registration failed");
     }
   };
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">

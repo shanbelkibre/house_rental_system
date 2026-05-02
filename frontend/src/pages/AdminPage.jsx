@@ -1176,10 +1176,55 @@ export default function AdminPage() {
                 ? toIsoDateInput(viewReportData.end_date)
                 : "—"}
             </p>
-            <div className="border rounded-xl p-3 bg-gray-50 text-xs text-gray-700 overflow-auto max-h-72">
-              <pre className="whitespace-pre-wrap">
-                {JSON.stringify(viewReportData.payload, null, 2)}
-              </pre>
+            <div className="border rounded-xl p-4 bg-gray-50 text-sm text-gray-800 max-h-[60vh] overflow-auto">
+              {(() => {
+                const p = viewReportData.payload;
+                if (!p) return null;
+                return (
+                  <div className="space-y-6">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      <div className="rounded-xl p-3 bg-white border shadow-sm text-blue-800">
+                        <p className="text-xs font-semibold text-gray-500">Revenue</p>
+                        <p className="text-xl font-bold mt-1">{money(p.subscription_revenue)}</p>
+                      </div>
+                      <div className="rounded-xl p-3 bg-white border shadow-sm text-green-800">
+                        <p className="text-xs font-semibold text-gray-500">Users Registered</p>
+                        <p className="text-xl font-bold mt-1">{p.users_registered}</p>
+                      </div>
+                      <div className="rounded-xl p-3 bg-white border shadow-sm text-purple-800">
+                        <p className="text-xs font-semibold text-gray-500">Houses Listed</p>
+                        <p className="text-xl font-bold mt-1">{p.houses_listed}</p>
+                      </div>
+                      <div className="rounded-xl p-3 bg-white border shadow-sm text-yellow-800">
+                        <p className="text-xs font-semibold text-gray-500">Requests Made</p>
+                        <p className="text-xl font-bold mt-1">{p.requests_made}</p>
+                      </div>
+                      <div className="rounded-xl p-3 bg-white border shadow-sm text-gray-800">
+                        <p className="text-xs font-semibold text-gray-500">Active Users</p>
+                        <p className="text-xl font-bold mt-1">{p.active_users}</p>
+                      </div>
+                      <div className="rounded-xl p-3 bg-white border shadow-sm text-gray-800">
+                        <p className="text-xs font-semibold text-gray-500">Total Houses</p>
+                        <p className="text-xl font-bold mt-1">{p.total_houses}</p>
+                      </div>
+                    </div>
+
+                    {p.payment_methods?.length > 0 && (
+                      <div>
+                        <h4 className="font-semibold mb-2">Payment Methods</h4>
+                        <div className="border rounded-lg bg-white overflow-hidden">
+                          {p.payment_methods.map((pm, idx) => (
+                            <div key={idx} className="flex justify-between px-3 py-2 border-b last:border-0">
+                              <span>{pm.payment_method || "—"}</span>
+                              <span className="font-medium">{money(pm.total)}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
             </div>
             <div className="flex justify-end">
               <Button
