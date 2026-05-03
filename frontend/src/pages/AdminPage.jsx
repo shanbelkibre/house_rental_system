@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   approveHouseAdmin,
   createSubscriptionPlan,
@@ -988,7 +989,7 @@ export default function AdminPage() {
                             className="border border-gray-100 rounded-2xl p-4 flex items-start justify-between gap-4"
                           >
                             <div className="flex gap-4">
-                              <div className="w-20 h-16 bg-gray-100 rounded-xl overflow-hidden flex-shrink-0">
+                              <Link to={`/houses/${h.id}`} target="_blank" className="w-20 h-16 bg-gray-100 rounded-xl overflow-hidden flex-shrink-0 block hover:opacity-80 transition-opacity">
                                 {img ? (
                                   <img
                                     src={img}
@@ -1000,11 +1001,11 @@ export default function AdminPage() {
                                     🏠
                                   </div>
                                 )}
-                              </div>
+                              </Link>
                               <div>
-                                <p className="font-medium text-gray-800">
+                                <Link to={`/houses/${h.id}`} target="_blank" className="font-medium text-blue-400 hover:underline">
                                   {h.title}
-                                </p>
+                                </Link>
                                 <p className="text-sm text-gray-500">
                                   📍 {h.location} · ETB {money(h.price)}/mo · 🛏{" "}
                                   {h.rooms} rooms

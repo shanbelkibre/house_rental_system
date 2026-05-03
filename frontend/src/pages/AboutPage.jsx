@@ -1,9 +1,30 @@
+import { useState, useEffect } from "react";
 import AnimatedHeading from "../components/AnimatedHeading";
 import FadeIn from "../components/FadeIn";
 import Counter from "../components/Counter";
 import TeamMember from "../components/TeamMember";
+import { getStats } from "../services/api";
 
 export default function AboutPage() {
+  const [stats, setStats] = useState({
+    total_houses: 500,
+    total_renters: 1200,
+    total_owners: 300,
+    cities_covered: 15
+  });
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const res = await getStats();
+        setStats(res.data);
+      } catch (err) {
+        console.error("Failed to load stats", err);
+      }
+    };
+    fetchStats();
+  }, []);
+
   const team = [
     {
       name: "Abebe Kebede",
@@ -29,46 +50,51 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white pt-24 pb-16">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-        
-        {/* Hero Section */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
+    <div className="min-h-screen bg-black text-white">
+      
+      {/* Hero Section */}
+      <div className="relative w-full pt-32 pb-24 flex flex-col items-center justify-center overflow-hidden mb-16">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80" alt="Background" className="absolute inset-0 w-full h-full object-cover z-0 opacity-20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black z-0"></div>
+        <div className="relative z-10 text-center max-w-3xl mx-auto px-6">
           <AnimatedHeading 
             text="Revolutionizing the way you find your home."
             className="text-4xl md:text-5xl font-bold mb-6"
           />
           <FadeIn delay={400}>
-            <p className="text-lg text-gray-400">
+            <p className="text-lg text-gray-300">
               HouseRental was founded with a simple mission: to make the process of renting a house in Ethiopia transparent, secure, and completely digital.
             </p>
           </FadeIn>
         </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pb-16">
 
         {/* Stats Section */}
         <FadeIn delay={600}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-24 border-y border-white/10 py-12">
             <div className="text-center">
               <h3 className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">
-                <Counter end={500} suffix="+" />
+                <Counter end={stats.total_houses} suffix="+" />
               </h3>
               <p className="text-gray-400">Available Houses</p>
             </div>
             <div className="text-center">
               <h3 className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">
-                <Counter end={1200} suffix="+" />
+                <Counter end={stats.total_renters} suffix="+" />
               </h3>
               <p className="text-gray-400">Happy Renters</p>
             </div>
             <div className="text-center">
               <h3 className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">
-                <Counter end={300} suffix="+" />
+                <Counter end={stats.total_owners} suffix="+" />
               </h3>
               <p className="text-gray-400">Verified Owners</p>
             </div>
             <div className="text-center">
               <h3 className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">
-                <Counter end={15} />
+                <Counter end={stats.cities_covered} />
               </h3>
               <p className="text-gray-400">Cities Covered</p>
             </div>

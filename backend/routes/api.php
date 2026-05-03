@@ -23,6 +23,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/houses', [HouseController::class, 'index']);
 Route::get('/houses/{id}', [HouseController::class, 'show']);
 Route::get('/houses/{houseId}/reviews', [ReviewController::class, 'houseReviews']);
+Route::get('/stats', [HouseController::class, 'stats']);
 
 
 // ==================== PROTECTED ROUTES (Require Token) ====================

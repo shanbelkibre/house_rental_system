@@ -14,52 +14,52 @@ export default function Navbar() {
   };
 
   return (
-    <div className="absolute top-0 left-0 right-0 z-50 px-6 md:px-12 lg:px-16 pt-6">
-      <nav className="liquid-glass rounded-xl px-4 py-2 flex items-center justify-between text-white shadow-sm">
+    <div className="absolute top-0 left-0 right-0 z-50">
+      <nav className="liquid-glass px-6 md:px-12 lg:px-16 py-3 flex items-center justify-between text-white shadow-sm border-b border-white/10">
         {/* Logo */}
         <Link to="/" className="text-2xl font-semibold tracking-tight text-white flex items-center">
           🏠 HouseRental
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-5 text-sm text-white font-medium">
-          <Link to="/" className="hover:text-gray-200 transition-colors">Home</Link>
-          <Link to="/about" className="hover:text-gray-200 transition-colors">About</Link>
-          <Link to="/services" className="hover:text-gray-200 transition-colors">Services</Link>
-          <Link to="/houses" className="hover:text-gray-200 transition-colors">Browse Houses</Link>
-          <Link to="/contact" className="hover:text-gray-200 transition-colors">Contact</Link>
-          <Link to="/faq" className="hover:text-gray-200 transition-colors">FAQ</Link>
+        <div className="hidden lg:flex items-center gap-2 text-sm text-white font-medium">
+          <Link to="/" className="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-blue-300 transition-all duration-200">Home</Link>
+          <Link to="/about" className="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-blue-300 transition-all duration-200">About</Link>
+          <Link to="/services" className="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-blue-300 transition-all duration-200">Services</Link>
+          <Link to="/houses" className="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-blue-300 transition-all duration-200">Browse Houses</Link>
+          <Link to="/contact" className="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-blue-300 transition-all duration-200">Contact</Link>
+          <Link to="/faq" className="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-blue-300 transition-all duration-200">FAQ</Link>
 
           {user ? (
             <>
               {user.role === 'owner' && (
                 <>
-                  <Link to="/my-houses" className="hover:text-gray-200 transition-colors">My Houses</Link>
-                  <Link to="/owner-requests" className="hover:text-gray-200 transition-colors">Requests</Link>
-                  <Link to="/subscription" className="hover:text-gray-200 transition-colors">Subscription</Link>
+                  <Link to="/my-houses" className="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-blue-300 transition-all duration-200">My Houses</Link>
+                  <Link to="/owner-requests" className="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-blue-300 transition-all duration-200">Requests</Link>
+                  <Link to="/subscription" className="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-blue-300 transition-all duration-200">Subscription</Link>
                 </>
               )}
               {user.role === 'renter' && (
                 <>
-                  <Link to="/my-requests" className="hover:text-gray-200 transition-colors">My Requests</Link>
-                  <Link to="/my-visits" className="hover:text-gray-200 transition-colors">My Visits</Link>
-                  <Link to="/my-agreements" className="hover:text-gray-200 transition-colors">Agreements</Link>
+                  <Link to="/my-requests" className="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-blue-300 transition-all duration-200">My Requests</Link>
+                  <Link to="/my-visits" className="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-blue-300 transition-all duration-200">My Visits</Link>
+                  <Link to="/my-agreements" className="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-blue-300 transition-all duration-200">Agreements</Link>
                 </>
               )}
               {user.role === 'admin' && (
-                <Link to="/admin" className="hover:text-gray-200 transition-colors">Admin Panel</Link>
+                <Link to="/admin" className="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-blue-300 transition-all duration-200">Admin Panel</Link>
               )}
-              <Link to="/notifications" className="hover:text-gray-200 transition-colors">🔔 Alerts</Link>
+              <Link to="/notifications" className="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-blue-300 transition-all duration-200">🔔 Alerts</Link>
               <div className="ml-2">
                 <UserAvatar user={user} size="sm" showDropdown={true} onLogout={handleLogout} />
               </div>
             </>
           ) : (
             <>
-              <Link to="/login" className="hover:text-gray-200 transition-colors ml-4">Login</Link>
+              <Link to="/login" className="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-blue-300 transition-all duration-200 ml-2">Login</Link>
               <Link
                 to="/register"
-                className="bg-white text-blue-600 px-5 py-2 rounded-lg text-sm font-semibold shadow hover:bg-gray-50 transition-colors"
+                className="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-blue-300 transition-all duration-200 ml-2"
               >
                 Register
               </Link>
@@ -102,7 +102,7 @@ export default function Navbar() {
           ) : (
             <>
               <Link to="/login" className="block py-2 hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>Login</Link>
-              <Link to="/register" className="block py-2 bg-white text-blue-600 px-4 rounded-lg mt-3 text-center font-semibold" onClick={() => setMenuOpen(false)}>Register</Link>
+              <Link to="/register" className="block py-2 hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>Register</Link>
             </>
           )}
         </div>

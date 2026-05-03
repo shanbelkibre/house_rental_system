@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import AnimatedHeading from "../components/AnimatedHeading";
@@ -6,9 +7,28 @@ import HeroSearch from "../components/HeroSearch";
 import FeaturedHouses from "../components/FeaturedHouses";
 import TestimonialCarousel from "../components/TestimonialCarousel";
 import Counter from "../components/Counter";
+import { getStats } from "../services/api";
 
 export default function HomePage() {
   const { user } = useAuth();
+  const [stats, setStats] = useState({
+    total_houses: 500,
+    total_renters: 1200,
+    total_owners: 300,
+    cities_covered: 15
+  });
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const res = await getStats();
+        setStats(res.data);
+      } catch (err) {
+        console.error("Failed to load stats", err);
+      }
+    };
+    fetchStats();
+  }, []);
 
   const dummyTestimonials = [
     {
@@ -32,16 +52,12 @@ export default function HomePage() {
     <div className="w-full bg-black text-white">
       {/* Hero Section */}
       <div className="relative w-full h-screen overflow-hidden flex flex-col justify-end">
-        {/* Video Background */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
+        {/* Static Background Image */}
+        <img
+          src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80"
+          alt="Luxury Home"
           className="absolute inset-0 w-full h-full object-cover z-0 opacity-60"
-        >
-          <source src="../../Asset/background.mp4" />
-        </video>
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-0"></div>
 
         <div className="relative z-10 px-6 md:px-12 lg:px-16 pb-16 lg:pb-24 w-full">
@@ -125,27 +141,27 @@ export default function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
               <h3 className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">
-                <Counter end={500} suffix="+" />
+                <Counter end={stats.total_houses} suffix="+" />
               </h3>
-              <p className="text-gray-400 font-medium">Active Listings</p>
+              <p className="text-gray-400 font-medium">Available Houses</p>
             </div>
             <div className="text-center">
               <h3 className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">
-                <Counter end={1200} suffix="+" />
+                <Counter end={stats.total_renters} suffix="+" />
               </h3>
-              <p className="text-gray-400 font-medium">Happy Users</p>
+              <p className="text-gray-400 font-medium">Happy Renters</p>
             </div>
             <div className="text-center">
               <h3 className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">
-                <Counter end={300} suffix="+" />
+                <Counter end={stats.total_owners} suffix="+" />
               </h3>
               <p className="text-gray-400 font-medium">Verified Owners</p>
             </div>
             <div className="text-center">
               <h3 className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">
-                <Counter end={99} suffix="%" />
+                <Counter end={stats.cities_covered} />
               </h3>
-              <p className="text-gray-400 font-medium">Satisfaction Rate</p>
+              <p className="text-gray-400 font-medium">Cities Covered</p>
             </div>
           </div>
         </div>
@@ -160,24 +176,26 @@ export default function HomePage() {
         <TestimonialCarousel testimonials={dummyTestimonials} />
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 relative overflow-hidden bg-blue-900/20">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&q=80')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Own a property?</h2>
-          <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-            Join thousands of property owners who are already managing their rentals efficiently on our platform.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link to="/register" className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl font-bold text-lg transition-colors shadow-lg shadow-blue-600/30">
-              List Your Property
-            </Link>
-            <Link to="/services" className="bg-transparent border-2 border-white hover:bg-white hover:text-black text-white px-8 py-4 rounded-xl font-bold text-lg transition-colors">
-              Learn More
-            </Link>
+      {/* CTA Section - Hide if logged in */}
+      {!user && (
+        <section className="py-24 relative overflow-hidden bg-blue-900/20">
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&q=80')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+          <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Own a property?</h2>
+            <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+              Join thousands of property owners who are already managing their rentals efficiently on our platform.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Link to="/register" className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl font-bold text-lg transition-colors shadow-lg shadow-blue-600/30">
+                List Your Property
+              </Link>
+              <Link to="/services" className="bg-transparent border-2 border-white hover:bg-white hover:text-black text-white px-8 py-4 rounded-xl font-bold text-lg transition-colors">
+                Learn More
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
     </div>
   );

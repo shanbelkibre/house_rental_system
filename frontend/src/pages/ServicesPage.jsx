@@ -2,8 +2,11 @@ import AnimatedHeading from "../components/AnimatedHeading";
 import FadeIn from "../components/FadeIn";
 import ServiceCard from "../components/ServiceCard";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function ServicesPage() {
+  const { user } = useAuth();
+
   const renterServices = [
     {
       icon: "🔍",
@@ -97,23 +100,25 @@ export default function ServicesPage() {
           </div>
         </div>
 
-        {/* CTA / Pricing Teaser */}
-        <FadeIn delay={200}>
-          <div className="bg-gradient-to-r from-blue-900/40 to-indigo-900/40 border border-blue-500/20 rounded-3xl p-8 md:p-12 text-center max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-4">Ready to list your property?</h2>
-            <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-              Join hundreds of property owners who are already managing their rentals efficiently. Choose a subscription plan that fits your needs.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link to="/register" className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-xl font-semibold transition-colors">
-                Create Owner Account
-              </Link>
-              <Link to="/contact" className="bg-transparent border border-white/20 hover:bg-white/5 text-white px-8 py-3 rounded-xl font-semibold transition-colors">
-                Contact Sales
-              </Link>
+        {/* CTA / Pricing Teaser - Hide if logged in */}
+        {!user && (
+          <FadeIn delay={200}>
+            <div className="bg-gradient-to-r from-blue-900/40 to-indigo-900/40 border border-blue-500/20 rounded-3xl p-8 md:p-12 text-center max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold mb-4">Ready to list your property?</h2>
+              <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+                Join hundreds of property owners who are already managing their rentals efficiently. Choose a subscription plan that fits your needs.
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <Link to="/register" className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-xl font-semibold transition-colors">
+                  Create Owner Account
+                </Link>
+                <Link to="/contact" className="bg-transparent border border-white/20 hover:bg-white/5 text-white px-8 py-3 rounded-xl font-semibold transition-colors">
+                  Contact Sales
+                </Link>
+              </div>
             </div>
-          </div>
-        </FadeIn>
+          </FadeIn>
+        )}
 
       </div>
     </div>
