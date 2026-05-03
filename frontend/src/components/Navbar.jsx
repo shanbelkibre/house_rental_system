@@ -2,11 +2,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useState } from 'react';
 import UserAvatar from './UserAvatar';
+import { useTheme } from '../context/ThemeContext';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { isDark, toggleTheme } = useTheme();
 
   const handleLogout = async () => {
     await logout();
@@ -50,20 +52,34 @@ export default function Navbar() {
                 <Link to="/admin" className="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-blue-300 transition-all duration-200">Admin Panel</Link>
               )}
               <Link to="/notifications" className="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-blue-300 transition-all duration-200">🔔 Alerts</Link>
-              <div className="ml-2">
+              <div className="ml-2 flex items-center gap-2">
                 <UserAvatar user={user} size="sm" showDropdown={true} onLogout={handleLogout} />
+                <button 
+                  onClick={toggleTheme} 
+                  className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors text-lg"
+                  title="Toggle Theme"
+                >
+                  {isDark ? '☀️' : '🌙'}
+                </button>
               </div>
             </>
           ) : (
-            <>
+            <div className="flex items-center gap-2">
               <Link to="/login" className="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-blue-300 transition-all duration-200 ml-2">Login</Link>
               <Link
                 to="/register"
-                className="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-blue-300 transition-all duration-200 ml-2"
+                className="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-blue-300 transition-all duration-200"
               >
                 Register
               </Link>
-            </>
+              <button 
+                onClick={toggleTheme} 
+                className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors text-lg ml-2"
+                title="Toggle Theme"
+              >
+                {isDark ? '☀️' : '🌙'}
+              </button>
+            </div>
           )}
         </div>
 

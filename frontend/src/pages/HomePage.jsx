@@ -50,7 +50,7 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="w-full bg-black text-white">
+    <div className="w-full bg-white dark:bg-black text-gray-900 dark:text-white transition-colors duration-300">
       {/* Hero Section */}
       <div className="relative w-full h-screen overflow-hidden flex flex-col justify-end">
         <img
@@ -97,88 +97,88 @@ export default function HomePage() {
       <FeaturedHouses />
 
       {/* How It Works Section */}
-      <section className="py-24 bg-gray-950">
+      <section className="py-24 bg-gray-50 dark:bg-gray-900 border-t border-gray-100 dark:border-white/10 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">How HouseRental Works</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">Our streamlined process makes renting or listing a property as simple as possible.</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">How HouseRental Works</h2>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Our streamlined process makes renting or listing a property as simple as possible.</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-12 relative">
             {/* Connecting line (desktop only) */}
-            <div className="hidden md:block absolute top-12 left-1/6 right-1/6 h-0.5 bg-gray-800 -z-10"></div>
+            <div className="hidden md:block absolute top-12 left-1/6 right-1/6 h-0.5 bg-gray-300 dark:bg-gray-800 -z-10 transition-colors duration-300"></div>
             
             <FadeIn delay={0} className="text-center">
-              <div className="w-24 h-24 mx-auto bg-blue-600 rounded-full flex items-center justify-center text-3xl mb-6 shadow-xl shadow-blue-600/20 border-4 border-gray-950">
+              <div className="w-24 h-24 mx-auto bg-blue-600 rounded-full flex items-center justify-center text-3xl mb-6 shadow-xl shadow-blue-600/20 border-4 border-white dark:border-gray-900 transition-colors duration-300">
                 🔍
               </div>
-              <h3 className="text-xl font-bold mb-3">1. Find Your Place</h3>
-              <p className="text-gray-400">Search through verified listings with high-quality photos and detailed descriptions.</p>
+              <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">1. Find Your Place</h3>
+              <p className="text-gray-600 dark:text-gray-400">Search through verified listings with high-quality photos and detailed descriptions.</p>
             </FadeIn>
 
             <FadeIn delay={200} className="text-center">
-              <div className="w-24 h-24 mx-auto bg-blue-600 rounded-full flex items-center justify-center text-3xl mb-6 shadow-xl shadow-blue-600/20 border-4 border-gray-950">
+              <div className="w-24 h-24 mx-auto bg-blue-600 rounded-full flex items-center justify-center text-3xl mb-6 shadow-xl shadow-blue-600/20 border-4 border-white dark:border-gray-900 transition-colors duration-300">
                 📅
               </div>
-              <h3 className="text-xl font-bold mb-3">2. Request a Visit</h3>
-              <p className="text-gray-400">Schedule a convenient time to view the property physically or take a virtual tour.</p>
+              <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">2. Request a Visit</h3>
+              <p className="text-gray-600 dark:text-gray-400">Schedule a convenient time to view the property physically or take a virtual tour.</p>
             </FadeIn>
 
             <FadeIn delay={400} className="text-center">
-              <div className="w-24 h-24 mx-auto bg-blue-600 rounded-full flex items-center justify-center text-3xl mb-6 shadow-xl shadow-blue-600/20 border-4 border-gray-950">
+              <div className="w-24 h-24 mx-auto bg-blue-600 rounded-full flex items-center justify-center text-3xl mb-6 shadow-xl shadow-blue-600/20 border-4 border-white dark:border-gray-900 transition-colors duration-300">
                 ✍️
               </div>
-              <h3 className="text-xl font-bold mb-3">3. Sign Digitally</h3>
-              <p className="text-gray-400">Review and sign your rental agreement securely online. No paperwork needed.</p>
+              <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">3. Sign Digitally</h3>
+              <p className="text-gray-600 dark:text-gray-400">Review and sign your rental agreement securely online. No paperwork needed.</p>
             </FadeIn>
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 border-y border-white/10 bg-black">
+      <section className="py-20 border-y border-gray-200 dark:border-white/10 bg-white dark:bg-black transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <h3 className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">
+              <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-500 mb-2">
                 <Counter end={stats.total_houses} suffix="+" />
               </h3>
-              <p className="text-gray-400 font-medium">Available Houses</p>
+              <p className="text-gray-600 dark:text-gray-400 font-medium">Available Houses</p>
             </div>
             <div className="text-center">
-              <h3 className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">
+              <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-500 mb-2">
                 <Counter end={stats.total_renters} suffix="+" />
               </h3>
-              <p className="text-gray-400 font-medium">Happy Renters</p>
+              <p className="text-gray-600 dark:text-gray-400 font-medium">Happy Renters</p>
             </div>
             <div className="text-center">
-              <h3 className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">
+              <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-500 mb-2">
                 <Counter end={stats.total_owners} suffix="+" />
               </h3>
-              <p className="text-gray-400 font-medium">Verified Owners</p>
+              <p className="text-gray-600 dark:text-gray-400 font-medium">Verified Owners</p>
             </div>
             <div className="text-center">
-              <h3 className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">
+              <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-500 mb-2">
                 <Counter end={stats.cities_covered} />
               </h3>
-              <p className="text-gray-400 font-medium">Cities Covered</p>
+              <p className="text-gray-600 dark:text-gray-400 font-medium">Cities Covered</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 bg-gray-950">
+      <section className="py-24 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-white/10 transition-colors duration-300">
         <div className="text-center mb-16 px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">What Our Users Say</h2>
-          <p className="text-gray-400">Don't just take our word for it.</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">What Our Users Say</h2>
+          <p className="text-gray-600 dark:text-gray-400">Don't just take our word for it.</p>
         </div>
         <TestimonialCarousel testimonials={dummyTestimonials} />
       </section>
 
       {/* CTA Section - Hide if logged in */}
       {!user && (
-        <section className="py-24 relative overflow-hidden bg-blue-900/20">
+        <section className="py-24 relative overflow-hidden bg-blue-600 dark:bg-blue-900/20 transition-colors duration-300">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&q=80')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
           <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Own a property?</h2>

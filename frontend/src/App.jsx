@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
+import { ThemeProvider } from "./context/ThemeContext";
 
 // Pages
 import HomePage from "./pages/HomePage";
@@ -34,10 +35,11 @@ import BlogPage from "./pages/BlogPage";
 
 function App() {
   return (
-    <AuthProvider>
-      <div className="min-h-screen bg-black font-sans flex flex-col">
-        <Navbar />
-        <main className="flex-1 flex flex-col">
+    <ThemeProvider>
+      <AuthProvider>
+        <div className="min-h-screen bg-white dark:bg-black font-sans flex flex-col text-gray-900 dark:text-white transition-colors duration-300">
+          <Navbar />
+          <main className="flex-1 flex flex-col">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
@@ -77,7 +79,8 @@ function App() {
         </main>
         <Footer />
       </div>
-    </AuthProvider>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
