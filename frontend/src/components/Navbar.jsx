@@ -22,8 +22,13 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-6 text-sm text-white">
+        <div className="hidden lg:flex items-center gap-5 text-sm text-white font-medium">
+          <Link to="/" className="hover:text-gray-200 transition-colors">Home</Link>
+          <Link to="/about" className="hover:text-gray-200 transition-colors">About</Link>
+          <Link to="/services" className="hover:text-gray-200 transition-colors">Services</Link>
           <Link to="/houses" className="hover:text-gray-200 transition-colors">Browse Houses</Link>
+          <Link to="/contact" className="hover:text-gray-200 transition-colors">Contact</Link>
+          <Link to="/faq" className="hover:text-gray-200 transition-colors">FAQ</Link>
 
           {user ? (
             <>
@@ -70,8 +75,13 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden mt-2 liquid-glass rounded-xl p-4 space-y-2 text-sm font-medium text-white shadow-lg">
+        <div className="md:hidden mt-2 liquid-glass rounded-xl p-4 space-y-1 text-sm font-medium text-white shadow-lg max-h-[80vh] overflow-y-auto">
+          <Link to="/" className="block py-2 hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>Home</Link>
+          <Link to="/about" className="block py-2 hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>About</Link>
+          <Link to="/services" className="block py-2 hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>Services</Link>
           <Link to="/houses" className="block py-2 hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>Browse Houses</Link>
+          <Link to="/contact" className="block py-2 hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>Contact</Link>
+          <Link to="/faq" className="block py-2 hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>FAQ</Link>
           {user ? (
             <>
               <Link to="/notifications" className="block py-2 hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>🔔 Notifications</Link>

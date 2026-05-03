@@ -2,84 +2,183 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import AnimatedHeading from "../components/AnimatedHeading";
 import FadeIn from "../components/FadeIn";
+import HeroSearch from "../components/HeroSearch";
+import FeaturedHouses from "../components/FeaturedHouses";
+import TestimonialCarousel from "../components/TestimonialCarousel";
+import Counter from "../components/Counter";
 
 export default function HomePage() {
   const { user } = useAuth();
 
-  return (
-    <div className="min-h-screen relative w-full overflow-hidden bg-black text-white">
-      {/* Video Background */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
-      >
-        <source src="../../Asset/background.mp4" />
-      </video>
+  const dummyTestimonials = [
+    {
+      name: "Aster Bekele",
+      role: "Renter",
+      content: "I found a beautiful house in just two days using HouseRental. The virtual tour feature saved me so much time!",
+    },
+    {
+      name: "Yonas Alemu",
+      role: "Property Owner",
+      content: "Managing my properties has never been easier. The digital agreements and tenant verification give me peace of mind.",
+    },
+    {
+      name: "Helen Tadesse",
+      role: "Renter",
+      content: "The communication with owners is seamless. I highly recommend this platform to anyone looking for a stress-free renting experience.",
+    }
+  ];
 
-      {/* Hero content pushing everything to the bottom */}
-      <div className="relative z-10 flex flex-col h-screen px-6 md:px-12 lg:px-16 pb-12 lg:pb-16 justify-end">
-        <div className="lg:grid lg:grid-cols-2 lg:items-end w-full">
-          {/* Left Column */}
-          <div>
+  return (
+    <div className="w-full bg-black text-white">
+      {/* Hero Section */}
+      <div className="relative w-full h-screen overflow-hidden flex flex-col justify-end">
+        {/* Video Background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0 opacity-60"
+        >
+          <source src="../../Asset/background.mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-0"></div>
+
+        <div className="relative z-10 px-6 md:px-12 lg:px-16 pb-16 lg:pb-24 w-full">
+          <div className="max-w-4xl">
             <AnimatedHeading
-              text="Find Your Perfect Home&#10;in Debre Birhan."
-              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal mb-4"
+              text="Find Your Perfect Home&#10;in Ethiopia."
+              className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-normal mb-6"
               style={{ letterSpacing: "-0.04em" }}
             />
 
             <FadeIn delay={800} duration={1000}>
-              <p className="text-base md:text-lg text-gray-300 mb-5 max-w-xl">
-                Browse verified rental listings across Debre Birhan and beyond.
-                Connect directly with owners.
+              <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl">
+                Browse verified rental listings. Connect directly with owners.
+                Sign digital agreements securely.
               </p>
             </FadeIn>
 
-            <FadeIn delay={1200} duration={1000}>
-              <div className="flex flex-wrap gap-4">
-                {user ? (
-                  <Link
-                    to="/houses"
-                    className="bg-white text-black px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
-                  >
-                    Browse Houses
-                  </Link>
-                ) : (
-                  <>
-                    <Link
-                      to="/register"
-                      className="bg-white text-black px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
-                    >
-                      Get Started
-                    </Link>
-                    <Link
-                      to="/houses"
-                      className="liquid-glass border border-white/20 text-white px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-black transition-colors"
-                    >
-                      Browse Houses
-                    </Link>
-                  </>
-                )}
+            <FadeIn delay={1200} duration={1000} className="mb-8">
+              <HeroSearch />
+            </FadeIn>
+            
+            <FadeIn delay={1400} duration={1000}>
+              <div className="flex gap-4">
+                <span className="liquid-glass border border-white/20 px-4 py-2 rounded-full text-sm">
+                  ✓ Verified Owners
+                </span>
+                <span className="liquid-glass border border-white/20 px-4 py-2 rounded-full text-sm">
+                  ✓ Secure Digital Agreements
+                </span>
               </div>
             </FadeIn>
           </div>
-
-          {/* Right Column - Tag */}
-          <FadeIn
-            delay={1400}
-            duration={1000}
-            className="mt-8 lg:mt-0 flex items-end justify-start lg:justify-end"
-          >
-            <div className="liquid-glass border border-white/20 px-6 py-3 rounded-xl inline-block">
-              <p className="text-lg md:text-xl lg:text-2xl font-light">
-                Secure. Fast. Trusted.
-              </p>
-            </div>
-          </FadeIn>
         </div>
       </div>
+
+      {/* Featured Houses Section */}
+      <FeaturedHouses />
+
+      {/* How It Works Section */}
+      <section className="py-24 bg-gray-950">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">How HouseRental Works</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">Our streamlined process makes renting or listing a property as simple as possible.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-12 relative">
+            {/* Connecting line (desktop only) */}
+            <div className="hidden md:block absolute top-12 left-1/6 right-1/6 h-0.5 bg-gray-800 -z-10"></div>
+            
+            <FadeIn delay={0} className="text-center">
+              <div className="w-24 h-24 mx-auto bg-blue-600 rounded-full flex items-center justify-center text-3xl mb-6 shadow-xl shadow-blue-600/20 border-4 border-gray-950">
+                🔍
+              </div>
+              <h3 className="text-xl font-bold mb-3">1. Find Your Place</h3>
+              <p className="text-gray-400">Search through verified listings with high-quality photos and detailed descriptions.</p>
+            </FadeIn>
+
+            <FadeIn delay={200} className="text-center">
+              <div className="w-24 h-24 mx-auto bg-blue-600 rounded-full flex items-center justify-center text-3xl mb-6 shadow-xl shadow-blue-600/20 border-4 border-gray-950">
+                📅
+              </div>
+              <h3 className="text-xl font-bold mb-3">2. Request a Visit</h3>
+              <p className="text-gray-400">Schedule a convenient time to view the property physically or take a virtual tour.</p>
+            </FadeIn>
+
+            <FadeIn delay={400} className="text-center">
+              <div className="w-24 h-24 mx-auto bg-blue-600 rounded-full flex items-center justify-center text-3xl mb-6 shadow-xl shadow-blue-600/20 border-4 border-gray-950">
+                ✍️
+              </div>
+              <h3 className="text-xl font-bold mb-3">3. Sign Digitally</h3>
+              <p className="text-gray-400">Review and sign your rental agreement securely online. No paperwork needed.</p>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-20 border-y border-white/10 bg-black">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <h3 className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">
+                <Counter end={500} suffix="+" />
+              </h3>
+              <p className="text-gray-400 font-medium">Active Listings</p>
+            </div>
+            <div className="text-center">
+              <h3 className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">
+                <Counter end={1200} suffix="+" />
+              </h3>
+              <p className="text-gray-400 font-medium">Happy Users</p>
+            </div>
+            <div className="text-center">
+              <h3 className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">
+                <Counter end={300} suffix="+" />
+              </h3>
+              <p className="text-gray-400 font-medium">Verified Owners</p>
+            </div>
+            <div className="text-center">
+              <h3 className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">
+                <Counter end={99} suffix="%" />
+              </h3>
+              <p className="text-gray-400 font-medium">Satisfaction Rate</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-24 bg-gray-950">
+        <div className="text-center mb-16 px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">What Our Users Say</h2>
+          <p className="text-gray-400">Don't just take our word for it.</p>
+        </div>
+        <TestimonialCarousel testimonials={dummyTestimonials} />
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 relative overflow-hidden bg-blue-900/20">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&q=80')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Own a property?</h2>
+          <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+            Join thousands of property owners who are already managing their rentals efficiently on our platform.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link to="/register" className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl font-bold text-lg transition-colors shadow-lg shadow-blue-600/30">
+              List Your Property
+            </Link>
+            <Link to="/services" className="bg-transparent border-2 border-white hover:bg-white hover:text-black text-white px-8 py-4 rounded-xl font-bold text-lg transition-colors">
+              Learn More
+            </Link>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }

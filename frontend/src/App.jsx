@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
 
@@ -22,14 +23,32 @@ import NotificationsPage from "./pages/NotificationsPage";
 import MyAgreementsPage from "./pages/MyAgreementsPage";
 import DesignProHero from "./pages/DesignProHero";
 
+// Marketing / Static Pages
+import AboutPage from "./pages/AboutPage";
+import ServicesPage from "./pages/ServicesPage";
+import ContactPage from "./pages/ContactPage";
+import FAQPage from "./pages/FAQPage";
+import TermsPage from "./pages/TermsPage";
+import PrivacyPage from "./pages/PrivacyPage";
+import BlogPage from "./pages/BlogPage";
+
 function App() {
   return (
     <AuthProvider>
       <div className="min-h-screen bg-black font-sans flex flex-col">
         <Navbar />
-        <main className="flex-1">
+        <main className="flex-1 flex flex-col">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/faq" element={<FAQPage />} />
+            <Route path="/terms" element={<TermsPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:id" element={<BlogPage />} />
+
             <Route path="/designpro" element={<DesignProHero />} />
             <Route path="/houses" element={<HousesPage />} />
             <Route path="/houses/:id" element={<HouseDetailPage />} />
@@ -56,6 +75,7 @@ function App() {
             </Route>
           </Routes>
         </main>
+        <Footer />
       </div>
     </AuthProvider>
   );

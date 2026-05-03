@@ -113,4 +113,9 @@ export const updateSubscriptionPlan = (id, payload) =>
 export const deleteSubscriptionPlan = (id) =>
   api.delete(`/admin/subscription-plans/${id}`);
 
+// ===================== Public / Marketing =====================
+export const getStats = () => api.get("/stats");
+export const submitContactForm = (payload) => api.post("/contact", payload);
+export const getTestimonials = () => api.get("/testimonials");
+
 export default api;
