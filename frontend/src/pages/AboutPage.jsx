@@ -4,6 +4,10 @@ import FadeIn from "../components/FadeIn";
 import Counter from "../components/Counter";
 import TeamMember from "../components/TeamMember";
 import { getStats } from "../services/api";
+import imgShambel from "../../Asset/shanbel.png";
+import imgBelete from "../../Asset/belet.png";
+import imgSamuel from "../../Asset/sami.jpg";
+import imgKalkidan from "../../Asset/kalkidan.png";
 
 export default function AboutPage() {
   const [stats, setStats] = useState({
@@ -27,25 +31,32 @@ export default function AboutPage() {
 
   const team = [
     {
-      name: "Abebe Kebede",
+      name: "Shambel Kibre",
       role: "Founder & CEO",
       bio: "Former real estate agent who saw the need for a modern, digital approach to finding homes in Ethiopia.",
       social: { twitter: "#", linkedin: "#" },
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80",
+      image: imgShambel,
     },
     {
-      name: "Tigist Haile",
+      name: "Belete Dereje",
       role: "Head of Operations",
       bio: "Ensures that all property owners are verified and the quality of listings remains top-notch.",
       social: { linkedin: "#" },
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80",
+      image: imgBelete,
     },
     {
-      name: "Dawit Samuel",
+      name: "Samuel Abera",
       role: "Lead Developer",
       bio: "The technical mind behind our fast, secure, and user-friendly platform.",
       social: { twitter: "#", linkedin: "#" },
-      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80",
+      image: imgSamuel,
+    },
+    {
+      name: "Kalkidan Behailu",
+      role: "Customer Success",
+      bio: "Dedicated to providing the best support and experience for renters and property owners.",
+      social: { twitter: "#", linkedin: "#" },
+      image: imgKalkidan,
     },
   ];
 
@@ -134,7 +145,7 @@ export default function AboutPage() {
               The passionate people working behind the scenes to bring you the best real estate experience.
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {team.map((member, idx) => (
               <FadeIn key={idx} delay={idx * 200}>
                 <TeamMember {...member} />

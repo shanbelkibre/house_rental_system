@@ -61,21 +61,26 @@ export default function BlogPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white pt-24 pb-16">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-        
-        {/* Header */}
-        <div className="text-center mb-16">
+    <div className="min-h-screen bg-black text-white">
+      
+      {/* Hero Section */}
+      <div className="relative w-full pt-32 pb-24 flex flex-col items-center justify-center overflow-hidden mb-16">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80" alt="Background" className="absolute inset-0 w-full h-full object-cover z-0 opacity-20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black z-0"></div>
+        <div className="relative z-10 text-center max-w-3xl mx-auto px-6">
           <AnimatedHeading 
             text="HouseRental Blog."
             className="text-4xl md:text-5xl font-bold mb-6"
           />
           <FadeIn delay={400}>
-            <p className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
               Tips, news, and insights for renters and property owners.
             </p>
           </FadeIn>
         </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pb-16">
 
         {/* Featured Post (First one) */}
         <FadeIn delay={600}>

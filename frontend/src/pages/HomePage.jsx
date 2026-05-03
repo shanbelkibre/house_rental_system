@@ -8,6 +8,7 @@ import FeaturedHouses from "../components/FeaturedHouses";
 import TestimonialCarousel from "../components/TestimonialCarousel";
 import Counter from "../components/Counter";
 import { getStats } from "../services/api";
+import houseBg from "../../Asset/house background.jpg";
 
 export default function HomePage() {
   const { user } = useAuth();
@@ -32,17 +33,17 @@ export default function HomePage() {
 
   const dummyTestimonials = [
     {
-      name: "Aster Bekele",
+      name: "Shambel Kibre",
       role: "Renter",
       content: "I found a beautiful house in just two days using HouseRental. The virtual tour feature saved me so much time!",
     },
     {
-      name: "Yonas Alemu",
+      name: "Sami Abera",
       role: "Property Owner",
       content: "Managing my properties has never been easier. The digital agreements and tenant verification give me peace of mind.",
     },
     {
-      name: "Helen Tadesse",
+      name: "Belete Derje",
       role: "Renter",
       content: "The communication with owners is seamless. I highly recommend this platform to anyone looking for a stress-free renting experience.",
     }
@@ -52,9 +53,8 @@ export default function HomePage() {
     <div className="w-full bg-black text-white">
       {/* Hero Section */}
       <div className="relative w-full h-screen overflow-hidden flex flex-col justify-end">
-        {/* Static Background Image */}
         <img
-          src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80"
+          src={houseBg}
           alt="Luxury Home"
           className="absolute inset-0 w-full h-full object-cover z-0 opacity-60"
         />

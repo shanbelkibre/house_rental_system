@@ -5,18 +5,24 @@ export default function PrivacyPage() {
   const lastUpdated = "October 15, 2025";
 
   return (
-    <div className="min-h-screen bg-black text-white pt-24 pb-16">
-      <div className="max-w-4xl mx-auto px-6 md:px-12 lg:px-16">
-        
-        <div className="mb-12 border-b border-white/10 pb-8">
+    <div className="min-h-screen bg-black text-white">
+      
+      {/* Hero Section */}
+      <div className="relative w-full pt-32 pb-24 flex flex-col items-center justify-center overflow-hidden mb-16">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80" alt="Background" className="absolute inset-0 w-full h-full object-cover z-0 opacity-20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black z-0"></div>
+        <div className="relative z-10 text-center max-w-3xl mx-auto px-6">
           <AnimatedHeading 
             text="Privacy Policy"
             className="text-4xl md:text-5xl font-bold mb-4"
           />
           <FadeIn delay={200}>
-            <p className="text-gray-400">Last updated: {lastUpdated}</p>
+            <p className="text-gray-300">Last updated: {lastUpdated}</p>
           </FadeIn>
         </div>
+      </div>
+
+      <div className="max-w-4xl mx-auto px-6 md:px-12 lg:px-16 pb-16">
 
         <FadeIn delay={400}>
           <div className="prose prose-invert prose-blue max-w-none prose-headings:font-bold prose-headings:text-gray-100 prose-p:text-gray-400 prose-li:text-gray-400">
