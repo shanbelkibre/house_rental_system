@@ -38,12 +38,12 @@ export default function RegisterPage() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-lg w-full max-w-md p-8 space-y-6">
+    <div className="flex-1 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-black dark:to-gray-900 flex items-center justify-center p-4 transition-colors duration-300">
+      <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-transparent dark:border-white/10 w-full max-w-md p-8 space-y-6 transition-colors duration-300">
         <div className="text-center space-y-1">
           <div className="text-4xl">🏠</div>
-          <h1 className="text-2xl font-bold text-gray-800">Create account</h1>
-          <p className="text-sm text-gray-500">
+          <h1 className="text-2xl font-bold text-gray-800 dark:text-white">Create account</h1>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
             Join the House Rental platform
           </p>
         </div>
@@ -99,11 +99,11 @@ export default function RegisterPage() {
           </Button>
         </form>
 
-        <p className="text-center text-sm text-gray-500">
+        <p className="text-center text-sm text-gray-500 dark:text-gray-400">
           Already have an account?{" "}
           <Link
             to="/login"
-            className="text-blue-600 font-medium hover:underline"
+            className="text-blue-600 dark:text-blue-400 font-medium hover:underline"
           >
             Sign in
           </Link>

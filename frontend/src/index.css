@@ -41,3 +41,4 @@ body {
   mask-composite: exclude;
   pointer-events: none;
 }
+@custom-variant dark (&:where(.dark, .dark *));
