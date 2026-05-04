@@ -63,8 +63,8 @@ export default function HomePage() {
         <div className="relative z-10 px-6 md:px-12 lg:px-16 pb-16 lg:pb-24 w-full">
           <div className="max-w-4xl">
             <AnimatedHeading
-              text="Find Your Perfect Home&#10;in Ethiopia."
-              className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-normal mb-6"
+              text="Find Your Perfect Home&#10;in Debre Birhan."
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal mb-6"
               style={{ letterSpacing: "-0.04em" }}
             />
 
