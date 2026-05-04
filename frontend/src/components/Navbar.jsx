@@ -32,11 +32,17 @@ export default function Navbar() {
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-2 text-sm text-gray-900 dark:text-white font-medium">
           <Link to="/" className="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-200">Home</Link>
-          <Link to="/about" className="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-200">About</Link>
-          <Link to="/services" className="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-200">Services</Link>
+          {!user && (
+            <>
+              <Link to="/about" className="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-200">About</Link>
+              <Link to="/services" className="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-200">Services</Link>
+            </>
+          )}
           <Link to="/houses" className="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-200">Browse Houses</Link>
           <Link to="/contact" className="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-200">Contact</Link>
-          <Link to="/faq" className="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-200">FAQ</Link>
+          {!user && (
+            <Link to="/faq" className="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-200">FAQ</Link>
+          )}
 
           {user ? (
             <>
@@ -105,11 +111,17 @@ export default function Navbar() {
       {menuOpen && (
         <div className="lg:hidden mt-2 bg-white/95 dark:bg-black/95 backdrop-blur-md rounded-xl p-4 space-y-1 text-sm font-medium text-gray-900 dark:text-white shadow-lg border border-gray-200 dark:border-white/10 max-h-[80vh] overflow-y-auto">
           <Link to="/" className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>Home</Link>
-          <Link to="/about" className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>About</Link>
-          <Link to="/services" className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>Services</Link>
+          {!user && (
+            <>
+              <Link to="/about" className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>About</Link>
+              <Link to="/services" className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>Services</Link>
+            </>
+          )}
           <Link to="/houses" className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>Browse Houses</Link>
           <Link to="/contact" className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>Contact</Link>
-          <Link to="/faq" className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>FAQ</Link>
+          {!user && (
+            <Link to="/faq" className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>FAQ</Link>
+          )}
           {user ? (
             <>
               <Link to="/notifications" className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>🔔 Notifications</Link>

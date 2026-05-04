@@ -45,6 +45,10 @@ export default function CreateHousePage() {
 
   const handleSave = async (e) => {
     e.preventDefault();
+    if (!licenseImage) {
+      setError("Ownership document (Karta) is required.");
+      return;
+    }
     setSaving(true);
     setError("");
     

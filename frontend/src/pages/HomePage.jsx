@@ -13,10 +13,10 @@ import houseBg from "../../Asset/house background.jpg";
 export default function HomePage() {
   const { user } = useAuth();
   const [stats, setStats] = useState({
-    total_houses: 500,
-    total_renters: 1200,
-    total_owners: 300,
-    cities_covered: 15
+    total_houses: 0,
+    total_renters: 0,
+    total_owners: 0,
+    cities_covered: 0
   });
 
   useEffect(() => {
@@ -141,19 +141,19 @@ export default function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
               <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-500 mb-2">
-                <Counter end={stats.total_houses} suffix="+" />
+                <Counter end={stats.total_houses} />
               </h3>
               <p className="text-gray-600 dark:text-gray-400 font-medium">Available Houses</p>
             </div>
             <div className="text-center">
               <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-500 mb-2">
-                <Counter end={stats.total_renters} suffix="+" />
+                <Counter end={stats.total_renters} />
               </h3>
               <p className="text-gray-600 dark:text-gray-400 font-medium">Happy Renters</p>
             </div>
             <div className="text-center">
               <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-500 mb-2">
-                <Counter end={stats.total_owners} suffix="+" />
+                <Counter end={stats.total_owners} />
               </h3>
               <p className="text-gray-600 dark:text-gray-400 font-medium">Verified Owners</p>
             </div>

@@ -46,6 +46,7 @@ export const getMyHouses = () => api.get("/my-houses");
 export const createRequest = (payload) => api.post("/requests", payload);
 export const updateRequest = (id, status) =>
   api.put(`/requests/${id}`, { status });
+export const deleteRequest = (id) => api.delete(`/requests/${id}`);
 export const getMyRequests = () => api.get("/my-requests");
 export const getOwnerRequests = () => api.get("/owner-requests");
 
@@ -67,6 +68,7 @@ export const getMyVisits = () => api.get("/my-visits");
 // ===================== Agreements =====================
 export const createAgreement = (payload) => api.post("/agreements", payload);
 export const confirmAgreement = (id) => api.put(`/agreements/${id}/confirm`);
+export const terminateAgreement = (id) => api.put(`/agreements/${id}/terminate`);
 export const getMyAgreements = () => api.get("/my-agreements");
 
 // ===================== Notifications =====================

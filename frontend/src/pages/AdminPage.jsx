@@ -1016,6 +1016,13 @@ export default function AdminPage() {
                               </div>
                             </div>
                             <div className="flex gap-2 flex-shrink-0">
+                              <Link
+                                to={`/houses/${h.id}`}
+                                target="_blank"
+                                className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl font-medium text-sm transition-all border border-gray-300 text-gray-700 hover:bg-gray-50"
+                              >
+                                View
+                              </Link>
                               <Button
                                 variant="success"
                                 onClick={() => onApproveHouse(h.id)}

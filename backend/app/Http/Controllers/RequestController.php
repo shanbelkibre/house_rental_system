@@ -106,6 +106,27 @@ class RequestController extends Controller
         ]);
     }
 
+    // ========== CANCEL/DELETE REQUEST ==========
+    public function destroy(Request $request, $id)
+    {
+        $rentalRequest = RequestRental::with('house')->findOrFail($id);
+        $user = $request->user();
+
+        // Only the renter who made the request can cancel it
+        if ($rentalRequest->renter_id !== $user->id) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+
+        // If it was accepted, we must revert the house status to available
+        if ($rentalRequest->status === 'accepted') {
+            $rentalRequest->house->update(['status' => 'available']);
+        }
+
+        $rentalRequest->delete();
+
+        return response()->json(['message' => 'Request cancelled successfully']);
+    }
+
     // ========== GET RENTER'S REQUESTS ==========
     public function myRequests(Request $request)
     {

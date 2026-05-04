@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import api from '../api/axios';
+import { terminateAgreement } from '../services/api';
 import { Spinner, Alert, Badge, Button } from '../components/UI';
 import { useAuth } from '../context/AuthContext';
 
@@ -14,7 +15,7 @@ export default function MyAgreementsPage() {
     setLoading(true);
     try {
       const { data } = await api.get('/my-agreements');
-      setAgreements(data.data || []);
+      setAgreements((data.data || []).filter(a => a.status !== 'terminated'));
     } catch { setError('Failed to load agreements'); }
     setLoading(false);
   };
@@ -25,6 +26,15 @@ export default function MyAgreementsPage() {
     try {
       await api.put(`/agreements/${id}/confirm`);
       setSuccess('Agreement confirmed!');
+      fetchAgreements();
+    } catch (e) { setError(e.response?.data?.message || 'Failed'); }
+  };
+
+  const leaveHouse = async (id) => {
+    if (!window.confirm("Are you sure you want to leave this house and terminate the rental?")) return;
+    try {
+      await terminateAgreement(id);
+      setSuccess('You have left the house successfully!');
       fetchAgreements();
     } catch (e) { setError(e.response?.data?.message || 'Failed'); }
   };
@@ -65,6 +75,11 @@ export default function MyAgreementsPage() {
 
               {a.status === 'pending' && (
                 <Button variant="success" onClick={() => confirm(a.id)}>✓ Confirm Agreement</Button>
+              )}
+              {a.status === 'confirmed' && user?.role === 'renter' && (
+                <div className="flex justify-end pt-2">
+                  <Button variant="danger" onClick={() => leaveHouse(a.id)}>🚪 Leave Out (Terminate)</Button>
+                </div>
               )}
             </div>
           ))}

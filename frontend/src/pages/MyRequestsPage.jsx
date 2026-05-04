@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../api/axios';
-import { Spinner, Alert, Badge } from '../components/UI';
+import { deleteRequest } from '../services/api';
+import { Spinner, Alert, Badge, Button } from '../components/UI';
 
 export default function MyRequestsPage() {
   const [requests, setRequests] = useState([]);
@@ -17,6 +18,16 @@ export default function MyRequestsPage() {
       setLoading(false);
     })();
   }, []);
+
+  const handleCancel = async (id) => {
+    if (!window.confirm("Are you sure you want to cancel this request?")) return;
+    try {
+      await deleteRequest(id);
+      setRequests(requests.filter(r => r.id !== id));
+    } catch (e) {
+      setError(e.response?.data?.message || 'Failed to cancel request');
+    }
+  };
 
   const statusColor = { pending: 'yellow', accepted: 'green', rejected: 'red' };
 
@@ -48,7 +59,14 @@ export default function MyRequestsPage() {
                   {r.message && <p className="text-sm italic text-gray-400">"{r.message}"</p>}
                   <p className="text-xs text-gray-400">{new Date(r.created_at).toLocaleDateString()}</p>
                 </div>
-                <Badge label={r.status} color={statusColor[r.status]} />
+                <div className="flex flex-col items-end gap-3">
+                  <Badge label={r.status} color={statusColor[r.status]} />
+                  {(r.status === 'pending' || r.status === 'accepted') && (
+                    <Button variant="danger" onClick={() => handleCancel(r.id)}>
+                      Cancel Request
+                    </Button>
+                  )}
+                </div>
               </div>
             </div>
           ))}

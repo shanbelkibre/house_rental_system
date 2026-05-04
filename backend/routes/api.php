@@ -49,6 +49,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // ========== RENTAL REQUESTS ==========
     Route::post('/requests', [RequestController::class, 'store']);
     Route::put('/requests/{id}', [RequestController::class, 'update']);
+    Route::delete('/requests/{id}', [RequestController::class, 'destroy']);
     Route::get('/my-requests', [RequestController::class, 'myRequests']);
     Route::get('/owner-requests', [RequestController::class, 'ownerRequests']);
 
@@ -68,6 +69,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // ========== OFFLINE AGREEMENTS ==========
     Route::post('/agreements', [AgreementController::class, 'store']);
     Route::put('/agreements/{id}/confirm', [AgreementController::class, 'confirm']);
+    Route::put('/agreements/{id}/terminate', [AgreementController::class, 'terminate']);
     Route::get('/my-agreements', [AgreementController::class, 'myAgreements']);
 
     // ========== NOTIFICATIONS ==========

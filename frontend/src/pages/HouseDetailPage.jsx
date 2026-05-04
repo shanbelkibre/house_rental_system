@@ -13,6 +13,7 @@ import {
   Input
 } from "../components/UI";
 import ImageGallery from "../components/ImageGallery";
+import { toStorageUrl } from "../utils/media";
 
 export default function HouseDetailPage() {
   const { id } = useParams();
@@ -54,26 +55,33 @@ export default function HouseDetailPage() {
   }, [id]);
 
   const sendRequest = async () => {
+    setError("");
     try {
       await api.post("/requests", { house_id: id, message: reqMsg });
       setSuccess("Rental request sent!");
       setReqModal(false);
     } catch (e) {
-      setError(e.response?.data?.message || "Failed");
+      const msgs = e.response?.data?.errors;
+      if (msgs) setError(Object.values(msgs).flat().join(" "));
+      else setError(e.response?.data?.message || "Failed");
     }
   };
 
   const scheduleVisit = async () => {
+    setError("");
     try {
       await api.post("/visits", { house_id: id, visit_date: visitDate });
       setSuccess("Visit scheduled!");
       setVisitModal(false);
     } catch (e) {
-      setError(e.response?.data?.message || "Failed");
+      const msgs = e.response?.data?.errors;
+      if (msgs) setError(Object.values(msgs).flat().join(" "));
+      else setError(e.response?.data?.message || "Failed");
     }
   };
 
   const submitReview = async () => {
+    setError("");
     try {
       await api.post("/reviews", {
         house_id: id,
@@ -82,11 +90,14 @@ export default function HouseDetailPage() {
       });
       setSuccess("Review submitted!");
       setRevModal(false);
+      setRevComment("");
       const { data } = await api.get(`/houses/${id}/reviews`);
       setReviews(data.reviews?.data || []);
       setAvgRating(data.average_rating || 0);
     } catch (e) {
-      setError(e.response?.data?.message || "Failed");
+      const msgs = e.response?.data?.errors;
+      if (msgs) setError(Object.values(msgs).flat().join(" "));
+      else setError(e.response?.data?.message || "Failed");
     }
   };
 
@@ -226,6 +237,23 @@ export default function HouseDetailPage() {
               <p className="text-sm text-gray-500 mt-1">📞 {house.owner.phone}</p>
             )}
           </Card>
+
+          {(user?.role === "admin" || user?.id === house.owner?.id) && house.license_image && (
+            <Card>
+              <h2 className="font-semibold text-gray-700 mb-2">Ownership Document (Karta)</h2>
+              <div className="border border-gray-200 rounded-xl overflow-hidden bg-gray-50 flex items-center justify-center p-2">
+                {house.license_image.endsWith(".pdf") ? (
+                  <a href={toStorageUrl(house.license_image)} target="_blank" rel="noreferrer" className="text-blue-600 hover:underline flex items-center gap-2 text-sm">
+                    📄 View PDF Document
+                  </a>
+                ) : (
+                  <a href={toStorageUrl(house.license_image)} target="_blank" rel="noreferrer" title="Click to view full size">
+                    <img src={toStorageUrl(house.license_image)} alt="House License/Karta" className="max-w-full h-auto rounded cursor-pointer hover:opacity-90 transition-opacity" />
+                  </a>
+                )}
+              </div>
+            </Card>
+          )}
 
           {user?.role === "renter" && house.status === "available" && (
             <Card className="space-y-3">
