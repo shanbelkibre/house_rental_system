@@ -7,6 +7,7 @@ import HeroSearch from "../components/HeroSearch";
 import FeaturedHouses from "../components/FeaturedHouses";
 import TestimonialCarousel from "../components/TestimonialCarousel";
 import Counter from "../components/Counter";
+import ContactSection from "../components/ContactSection";
 import { getStats } from "../services/api";
 import houseBg from "../../Asset/house background.jpg";
 
@@ -175,6 +176,9 @@ export default function HomePage() {
         </div>
         <TestimonialCarousel testimonials={dummyTestimonials} />
       </section>
+
+      {/* Contact Section */}
+      <ContactSection />
 
       {/* CTA Section - Hide if logged in */}
       {!user && (

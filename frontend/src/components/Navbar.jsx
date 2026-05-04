@@ -39,10 +39,7 @@ export default function Navbar() {
             </>
           )}
           <Link to="/houses" className="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-200">Browse Houses</Link>
-          <Link to="/contact" className="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-200">Contact</Link>
-          {!user && (
-            <Link to="/faq" className="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-200">FAQ</Link>
-          )}
+          <a href="/#contact" className="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-200">Contact</a>
 
           {user ? (
             <>
@@ -78,12 +75,6 @@ export default function Navbar() {
           ) : (
             <div className="flex items-center gap-2">
               <Link to="/login" className="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-200 ml-2">Login</Link>
-              <Link
-                to="/register"
-                className="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-200"
-              >
-                Register
-              </Link>
               <button 
                 onClick={toggleTheme} 
                 className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-lg ml-2"
@@ -118,10 +109,7 @@ export default function Navbar() {
             </>
           )}
           <Link to="/houses" className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>Browse Houses</Link>
-          <Link to="/contact" className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>Contact</Link>
-          {!user && (
-            <Link to="/faq" className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>FAQ</Link>
-          )}
+          <a href="/#contact" className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>Contact</a>
           {user ? (
             <>
               <Link to="/notifications" className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>🔔 Notifications</Link>
@@ -140,10 +128,9 @@ export default function Navbar() {
               <button onClick={() => { handleLogout(); setMenuOpen(false); }} className="block w-full text-left py-2 px-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-white/10 rounded">Logout</button>
             </>
           ) : (
-            <>
+            <div className="border-t border-gray-100 dark:border-white/10 pt-2 mt-2">
               <Link to="/login" className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>Login</Link>
-              <Link to="/register" className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2" onClick={() => setMenuOpen(false)}>Register</Link>
-            </>
+            </div>
           )}
         </div>
       )}

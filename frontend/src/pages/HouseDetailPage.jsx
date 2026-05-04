@@ -117,7 +117,7 @@ export default function HouseDetailPage() {
   const images = house.images || [];
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
+    <div className="max-w-5xl mx-auto px-4 pt-24 pb-8 space-y-6">
       {success && <Alert type="success" message={success} />}
       {error && <Alert type="error" message={error} />}
 
