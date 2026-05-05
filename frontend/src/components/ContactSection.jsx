@@ -84,7 +84,7 @@ export default function ContactSection() {
 
           {/* Contact Form */}
           <FadeIn direction="left">
-            <div className="bg-white dark:bg-gray-950 border border-gray-200 dark:border-white/10 rounded-3xl p-8 shadow-xl transition-colors duration-300">
+            <div id="contactform" className="bg-white dark:bg-gray-950 border border-gray-200 dark:border-white/10 rounded-3xl p-8 shadow-xl transition-colors duration-300">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Send us a message</h3>
               
               {success && (

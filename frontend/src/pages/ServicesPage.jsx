@@ -1,6 +1,7 @@
 import AnimatedHeading from "../components/AnimatedHeading";
 import FadeIn from "../components/FadeIn";
 import ServiceCard from "../components/ServiceCard";
+import ContactSection from "../components/ContactSection";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
@@ -117,15 +118,18 @@ export default function ServicesPage() {
                 <Link to="/register" className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-xl font-semibold transition-colors">
                   Create Owner Account
                 </Link>
-                <Link to="#contact" className="bg-transparent border border-blue-600 dark:border-white/20 hover:bg-blue-50 dark:hover:bg-white/5 text-blue-600 dark:text-white px-8 py-3 rounded-xl font-semibold transition-colors">
+                <a href="#contactform" className="bg-transparent border border-blue-600 dark:border-white/20 hover:bg-blue-50 dark:hover:bg-white/5 text-blue-600 dark:text-white px-8 py-3 rounded-xl font-semibold transition-colors inline-block">
                   Contact Sales
-                </Link>
+                </a>
               </div>
             </div>
           </FadeIn>
         )}
 
       </div>
+      
+      {/* Contact Section */}
+      <ContactSection />
     </div>
   );
 }

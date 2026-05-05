@@ -88,13 +88,8 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto pt-8 border-t border-gray-200 dark:border-white/10 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
         <p>&copy; {currentYear} HouseRental. All rights reserved.</p>
-        <div className="flex items-center space-x-4 mt-4 md:mt-0">
-          <span>Secured Payments</span>
-          <div className="flex space-x-2">
-            <div className="w-8 h-5 bg-gray-200 dark:bg-gray-800 rounded flex items-center justify-center text-[10px] font-bold text-gray-800 dark:text-white">VISA</div>
-            <div className="w-8 h-5 bg-gray-200 dark:bg-gray-800 rounded flex items-center justify-center text-[10px] font-bold text-gray-800 dark:text-white">MC</div>
-          </div>
-        </div>
+       
+       
       </div>
     </footer>
   );
