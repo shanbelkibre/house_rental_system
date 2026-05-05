@@ -109,3 +109,4 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 });
 
+require base_path('routes/test_upload.php');

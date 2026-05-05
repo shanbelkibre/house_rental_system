@@ -165,12 +165,6 @@ class HouseController extends Controller
         $house = House::where('owner_id', $request->user()->id)
             ->findOrFail($id);
 
-        // Delete associated images
-        foreach ($house->images as $image) {
-            Storage::disk('public')->delete($image->image_path);
-            $image->delete();
-        }
-
         $house->delete();
 
         return response()->json([
@@ -185,7 +179,7 @@ class HouseController extends Controller
             ->findOrFail($id);
 
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+            'image' => 'required|image|mimes:jpeg,png,jpg,webp,gif,jfif|max:2048'
         ]);
 
         $path = $request->file('image')->store('houses', 'public');
@@ -207,7 +201,7 @@ class HouseController extends Controller
 
         $request->validate([
             'images' => 'required|array',
-            'images.*.file' => 'required|image|mimes:jpeg,png,jpg|max:5120'
+            'images.*.file' => 'required|image|mimes:jpeg,png,jpg,webp,gif,jfif|max:5120'
         ]);
 
         $uploadedImages = [];
@@ -232,7 +226,7 @@ class HouseController extends Controller
         $house = House::where('owner_id', $request->user()->id)->findOrFail($id);
 
         $request->validate([
-            'license_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:5120'
+            'license_image' => 'required|file|mimes:jpeg,png,jpg,webp,gif,jfif,pdf|max:5120'
         ]);
 
         if ($house->license_image) {

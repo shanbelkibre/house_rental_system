@@ -17,22 +17,17 @@ export const createHouse = (payload) => api.post("/houses", payload);
 export const updateHouse = (id, payload) => api.put(`/houses/${id}`, payload);
 export const deleteHouse = (id) => api.delete(`/houses/${id}`);
 export const uploadHouseImage = (id, formData) =>
-  api.post(`/houses/${id}/images`, formData, {
-    headers: { "Content-Type": "multipart/form-data" },
-  });
+  api.post(`/houses/${id}/images`, formData);
 export const deleteHouseImage = (houseId, imageId) =>
   api.delete(`/houses/${houseId}/images/${imageId}`);
 
 export const uploadMultipleHouseImages = (houseId, formData, onUploadProgress) =>
   api.post(`/houses/${houseId}/images/multiple`, formData, {
-    headers: { "Content-Type": "multipart/form-data" },
     onUploadProgress,
   });
 
 export const uploadLicenseImage = (houseId, formData) =>
-  api.post(`/houses/${houseId}/license`, formData, {
-    headers: { "Content-Type": "multipart/form-data" },
-  });
+  api.post(`/houses/${houseId}/license`, formData);
 
 export const reorderImages = (houseId, imageIds) =>
   api.put(`/houses/${houseId}/images/reorder`, { image_ids: imageIds });

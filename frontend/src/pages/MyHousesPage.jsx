@@ -24,7 +24,8 @@ export default function MyHousesPage() {
   const [editing, setEditing] = useState(null);
   const [form, setForm] = useState({ 
     title: "", description: "", price: "", location: "", rooms: "",
-    bathrooms: "1", area: "", type: "apartment", amenities: [], availability_date: ""
+    bathrooms: "1", area: "", type: "apartment", amenities: [], availability_date: "",
+    status: "available"
   });
   const [saving, setSaving] = useState(false);
 
@@ -79,6 +80,7 @@ export default function MyHousesPage() {
       type: h.type || "apartment",
       amenities: h.amenities || [],
       availability_date: h.availability_date || "",
+      status: h.status || "available",
     });
     setModal(true);
   };
@@ -194,7 +196,7 @@ export default function MyHousesPage() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
+    <div className="max-w-5xl mx-auto px-4 pt-24 pb-8 space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-800">My Houses</h1>
@@ -293,6 +295,16 @@ export default function MyHousesPage() {
                 <option value="condo">Condo</option>
                 <option value="house">House</option>
                 <option value="studio">Studio</option>
+              </select>
+            </div>
+            <div className="space-y-1">
+              <label className="block text-sm font-medium text-gray-700">Status</label>
+              <select 
+                className="w-full border border-gray-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={form.status} onChange={setF("status")} required
+              >
+                <option value="available">Available</option>
+                <option value="rented">Rented</option>
               </select>
             </div>
             <Input label="Availability Date" type="date" value={form.availability_date} onChange={setF("availability_date")} />

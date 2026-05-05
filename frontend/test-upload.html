@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <input type="file" id="file" />
+  <button onclick="upload()">Upload</button>
+  <script>
+    async function upload() {
+      const file = document.getElementById('file').files[0];
+      const fd = new FormData();
+      fd.append('images[0][file]', file);
+      fd.append('images[0][type]', 'Other');
+      
+      const res = await fetch('http://localhost:8000/api/test-upload', {
+        method: 'POST',
+        body: fd
+      });
+      console.log(await res.json());
+    }
+  </script>
+</body>
+</html>

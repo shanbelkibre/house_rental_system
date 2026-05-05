@@ -86,7 +86,7 @@ export default function CreateHousePage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 space-y-6">
+    <div className="max-w-4xl mx-auto px-4 pt-24 pb-8 space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-gray-800">Add New House</h1>
         <Button variant="outline" onClick={() => navigate("/my-houses")}>Back</Button>

@@ -39,4 +39,31 @@ class House extends Model
     {
         return $this->hasMany(Review::class, 'house_id');
     }
+
+    public function visits()
+    {
+        return $this->hasMany(Visit::class, 'house_id');
+    }
+
+    public function agreements()
+    {
+        return $this->hasMany(Agreement::class, 'house_id');
+    }
+
+    protected static function booted()
+    {
+        static::deleting(function ($house) {
+            // Delete related images from storage and database
+            foreach ($house->images as $image) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($image->image_path);
+                $image->delete();
+            }
+            
+            // Delete other related records to prevent foreign key constraints
+            $house->requests()->delete();
+            $house->reviews()->delete();
+            $house->visits()->delete();
+            $house->agreements()->delete();
+        });
+    }
 }
