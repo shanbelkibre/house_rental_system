@@ -57,7 +57,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-lg text-gray-900 dark:text-white">Office Address</h4>
-                    <p className="text-gray-600 dark:text-gray-400">123 Debre Birhan Road<br/>North Shewa, Ethiopia</p>
+                    <p className="text-gray-600 dark:text-gray-400">Debre Birhan Road<br/>North Shewa, Ethiopia</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -66,7 +66,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-lg text-gray-900 dark:text-white">Phone Number</h4>
-                    <p className="text-gray-600 dark:text-gray-400">+251 911 234 567<br/>+251 112 345 678</p>
+                    <p className="text-gray-600 dark:text-gray-400">+251 946 340 709<br/>+251 923 010 537</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -75,7 +75,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-lg text-gray-900 dark:text-white">Email Address</h4>
-                    <p className="text-gray-600 dark:text-gray-400">support@houserental.com<br/>sales@houserental.com</p>
+                    <p className="text-gray-600 dark:text-gray-400">shambel5110@gmail.com<br/>sales@houserental.com</p>
                   </div>
                 </div>
               </div>

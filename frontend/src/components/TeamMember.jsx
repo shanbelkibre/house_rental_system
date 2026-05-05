@@ -1,11 +1,11 @@
-export default function TeamMember({ image, name, role, bio, social }) {
+export default function TeamMember({ image, name, role, bio, social, imagePosition = "object-top" }) {
   return (
     <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden hover:border-gray-300 dark:hover:border-white/20 transition-all duration-300 flex flex-col items-center text-center p-6 group shadow-sm dark:shadow-none">
       <div className="w-32 h-32 rounded-full overflow-hidden mb-4 border-4 border-gray-100 dark:border-gray-800 group-hover:border-blue-500/50 transition-colors">
         <img 
           src={image || "https://ui-avatars.com/api/?name=" + encodeURIComponent(name) + "&background=random"} 
           alt={name}
-          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+          className={`w-full h-full object-cover ${imagePosition} group-hover:scale-105 transition-transform duration-500`}
           loading="lazy"
         />
       </div>

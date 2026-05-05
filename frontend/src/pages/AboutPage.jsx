@@ -43,6 +43,7 @@ export default function AboutPage() {
       bio: "Ensures that all property owners are verified and the quality of listings remains top-notch.",
       social: { linkedin: "#" },
       image: imgBelete,
+      imagePosition: "object-center",
     },
     {
       name: "Samuel Abera",

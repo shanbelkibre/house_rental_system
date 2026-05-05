@@ -24,7 +24,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex-1 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-black dark:to-gray-900 flex items-center justify-center p-4 transition-colors duration-300">
+    <div className="flex-1 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-black dark:to-gray-900 flex items-center justify-center py-16 px-4 md:py-24 transition-colors duration-300">
       <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-transparent dark:border-white/10 w-full max-w-md p-8 space-y-6 transition-colors duration-300">
         <div className="text-center space-y-1">
           <div className="text-4xl">🏠</div>
