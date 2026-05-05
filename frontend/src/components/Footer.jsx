@@ -4,14 +4,14 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-950 text-gray-300 py-12 px-6 md:px-12 lg:px-16 mt-auto border-t border-white/10">
+    <footer className="bg-white dark:bg-gray-950 text-gray-600 dark:text-gray-300 py-12 px-6 md:px-12 lg:px-16 mt-auto border-t border-gray-200 dark:border-white/10 transition-colors duration-300">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
         {/* Column 1: Brand & Social */}
         <div className="space-y-4">
-          <Link to="/" className="text-2xl font-semibold tracking-tight text-white flex items-center">
+          <Link to="/" className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white flex items-center">
             🏠 HouseRental
           </Link>
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-gray-500 dark:text-gray-400">
             Your trusted platform for finding the perfect home or managing your rental properties securely and easily.
           </p>
           <div className="flex space-x-4 pt-2">
@@ -32,29 +32,29 @@ export default function Footer() {
 
         {/* Column 2: Quick Links */}
         <div>
-          <h3 className="text-white font-semibold mb-4 text-lg">Quick Links</h3>
+          <h3 className="text-gray-900 dark:text-white font-semibold mb-4 text-lg">Quick Links</h3>
           <ul className="space-y-2 text-sm">
-            <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
-            <li><Link to="/services" className="hover:text-white transition-colors">Our Services</Link></li>
-            <li><Link to="/houses" className="hover:text-white transition-colors">Browse Houses</Link></li>
-            <li><Link to="/blog" className="hover:text-white transition-colors">Blog & News</Link></li>
+            <li><Link to="/about" className="hover:text-black dark:hover:text-white transition-colors">About Us</Link></li>
+            <li><Link to="/services" className="hover:text-black dark:hover:text-white transition-colors">Our Services</Link></li>
+            <li><Link to="/houses" className="hover:text-black dark:hover:text-white transition-colors">Browse Houses</Link></li>
+            <li><Link to="/blog" className="hover:text-black dark:hover:text-white transition-colors">Blog & News</Link></li>
           </ul>
         </div>
 
         {/* Column 3: Support */}
         <div>
-          <h3 className="text-white font-semibold mb-4 text-lg">Support</h3>
+          <h3 className="text-gray-900 dark:text-white font-semibold mb-4 text-lg">Support</h3>
           <ul className="space-y-2 text-sm">
-            <li><Link to="/faq" className="hover:text-white transition-colors">Help & FAQ</Link></li>
-            <li><Link to="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
-            <li><Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
-            <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+            <li><Link to="/faq" className="hover:text-black dark:hover:text-white transition-colors">Help & FAQ</Link></li>
+            <li><Link to="/contact" className="hover:text-black dark:hover:text-white transition-colors">Contact Us</Link></li>
+            <li><Link to="/terms" className="hover:text-black dark:hover:text-white transition-colors">Terms of Service</Link></li>
+            <li><Link to="/privacy" className="hover:text-black dark:hover:text-white transition-colors">Privacy Policy</Link></li>
           </ul>
         </div>
 
         {/* Column 4: Contact */}
         <div>
-          <h3 className="text-white font-semibold mb-4 text-lg">Contact Us</h3>
+          <h3 className="text-gray-900 dark:text-white font-semibold mb-4 text-lg">Contact Us</h3>
           <ul className="space-y-3 text-sm">
             <li className="flex items-start">
               <span className="mr-2">📍</span>
@@ -66,20 +66,20 @@ export default function Footer() {
             </li>
             <li className="flex items-center">
               <span className="mr-2">✉️</span>
-              <a href="mailto:support@houserental.com" className="hover:text-white transition-colors">support@houserental.com</a>
+              <a href="mailto:support@houserental.com" className="hover:text-black dark:hover:text-white transition-colors">support@houserental.com</a>
             </li>
           </ul>
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="max-w-7xl mx-auto pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+      <div className="max-w-7xl mx-auto pt-8 border-t border-gray-200 dark:border-white/10 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
         <p>&copy; {currentYear} HouseRental. All rights reserved.</p>
         <div className="flex items-center space-x-4 mt-4 md:mt-0">
           <span>Secured Payments</span>
           <div className="flex space-x-2">
-            <div className="w-8 h-5 bg-gray-800 rounded flex items-center justify-center text-[10px] font-bold text-white">VISA</div>
-            <div className="w-8 h-5 bg-gray-800 rounded flex items-center justify-center text-[10px] font-bold text-white">MC</div>
+            <div className="w-8 h-5 bg-gray-200 dark:bg-gray-800 rounded flex items-center justify-center text-[10px] font-bold text-gray-800 dark:text-white">VISA</div>
+            <div className="w-8 h-5 bg-gray-200 dark:bg-gray-800 rounded flex items-center justify-center text-[10px] font-bold text-gray-800 dark:text-white">MC</div>
           </div>
         </div>
       </div>

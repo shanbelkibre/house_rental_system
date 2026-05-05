@@ -61,19 +61,19 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white transition-colors duration-300">
       
       {/* Hero Section */}
       <div className="relative w-full pt-32 pb-24 flex flex-col items-center justify-center overflow-hidden mb-16">
         <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80" alt="Background" className="absolute inset-0 w-full h-full object-cover z-0 opacity-20" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-white dark:to-black z-0 transition-colors duration-300"></div>
         <div className="relative z-10 text-center max-w-3xl mx-auto px-6">
           <AnimatedHeading 
             text="Revolutionizing the way you find your home."
-            className="text-4xl md:text-5xl font-bold mb-6"
+            className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white"
           />
           <FadeIn delay={400}>
-            <p className="text-lg text-gray-300">
+            <p className="text-lg text-gray-700 dark:text-gray-300">
               HouseRental was founded with a simple mission: to make the process of renting a house in Ethiopia transparent, secure, and completely digital.
             </p>
           </FadeIn>
@@ -84,30 +84,30 @@ export default function AboutPage() {
 
         {/* Stats Section */}
         <FadeIn delay={600}>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-24 border-y border-white/10 py-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-24 border-y border-gray-200 dark:border-white/10 py-12">
             <div className="text-center">
-              <h3 className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">
+              <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-500 mb-2">
                 <Counter end={stats.total_houses} suffix="+" />
               </h3>
-              <p className="text-gray-400">Available Houses</p>
+              <p className="text-gray-600 dark:text-gray-400">Available Houses</p>
             </div>
             <div className="text-center">
-              <h3 className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">
+              <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-500 mb-2">
                 <Counter end={stats.total_renters} suffix="+" />
               </h3>
-              <p className="text-gray-400">Happy Renters</p>
+              <p className="text-gray-600 dark:text-gray-400">Happy Renters</p>
             </div>
             <div className="text-center">
-              <h3 className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">
+              <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-500 mb-2">
                 <Counter end={stats.total_owners} suffix="+" />
               </h3>
-              <p className="text-gray-400">Verified Owners</p>
+              <p className="text-gray-600 dark:text-gray-400">Verified Owners</p>
             </div>
             <div className="text-center">
-              <h3 className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">
+              <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-500 mb-2">
                 <Counter end={stats.cities_covered} />
               </h3>
-              <p className="text-gray-400">Cities Covered</p>
+              <p className="text-gray-600 dark:text-gray-400">Cities Covered</p>
             </div>
           </div>
         </FadeIn>
@@ -122,8 +122,8 @@ export default function AboutPage() {
             />
           </FadeIn>
           <FadeIn direction="left">
-            <h2 className="text-3xl font-bold mb-6">Our Story</h2>
-            <div className="space-y-4 text-gray-400">
+            <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Our Story</h2>
+            <div className="space-y-4 text-gray-600 dark:text-gray-400">
               <p>
                 It all started when our founders struggled to find a reliable rental property. The traditional process was slow, involved too many middlemen, and lacked transparency.
               </p>
@@ -140,8 +140,8 @@ export default function AboutPage() {
         {/* Team Section */}
         <div className="mb-12">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Meet Our Team</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Meet Our Team</h2>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               The passionate people working behind the scenes to bring you the best real estate experience.
             </p>
           </div>
