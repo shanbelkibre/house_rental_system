@@ -8,7 +8,7 @@ export default function ContactSection() {
     name: "",
     email: "",
     phone: "",
-    message: ""
+    message: "",
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -29,19 +29,28 @@ export default function ContactSection() {
       setSuccess(true);
       setFormData({ name: "", email: "", phone: "", message: "" });
     } catch (err) {
-      setError(err.response?.data?.message || "Something went wrong. Please try again.");
+      setError(
+        err.response?.data?.message ||
+          "Something went wrong. Please try again.",
+      );
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section id="contact" className="py-24 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-white/10 transition-colors duration-300">
+    <section
+      id="contact"
+      className="py-24 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-white/10 transition-colors duration-300"
+    >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Get in Touch</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Get in Touch
+          </h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Have questions about our platform? Need help with your account? Our team is here to assist you.
+            Have questions about our platform? Need help with your account? Our
+            team is here to assist you.
           </p>
         </div>
 
@@ -49,15 +58,23 @@ export default function ContactSection() {
           {/* Contact Info & Map */}
           <FadeIn direction="right">
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Contact Information</h3>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                Contact Information
+              </h3>
               <div className="space-y-6 mb-10">
                 <div className="flex items-start">
                   <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-500 text-xl shrink-0 mr-4">
                     📍
                   </div>
                   <div>
-                    <h4 className="font-semibold text-lg text-gray-900 dark:text-white">Office Address</h4>
-                    <p className="text-gray-600 dark:text-gray-400">Debre Birhan Road<br/>North Shewa, Ethiopia</p>
+                    <h4 className="font-semibold text-lg text-gray-900 dark:text-white">
+                      Office Address
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      Debre Birhan Road
+                      <br />
+                      North Shewa, Ethiopia
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -65,8 +82,14 @@ export default function ContactSection() {
                     📞
                   </div>
                   <div>
-                    <h4 className="font-semibold text-lg text-gray-900 dark:text-white">Phone Number</h4>
-                    <p className="text-gray-600 dark:text-gray-400">+251 946 340 709<br/>+251 923 010 537</p>
+                    <h4 className="font-semibold text-lg text-gray-900 dark:text-white">
+                      Phone Number
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      +251 946 340 709
+                      <br />
+                      +251 923 010 537
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -74,8 +97,14 @@ export default function ContactSection() {
                     ✉️
                   </div>
                   <div>
-                    <h4 className="font-semibold text-lg text-gray-900 dark:text-white">Email Address</h4>
-                    <p className="text-gray-600 dark:text-gray-400">shambel5110@gmail.com<br/>sales@houserental.com</p>
+                    <h4 className="font-semibold text-lg text-gray-900 dark:text-white">
+                      Email Address
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      shambel5110@gmail.com
+                      <br />
+                      sales@houserental.com
+                    </p>
                   </div>
                 </div>
               </div>
@@ -84,9 +113,14 @@ export default function ContactSection() {
 
           {/* Contact Form */}
           <FadeIn direction="left">
-            <div id="contactform" className="bg-white dark:bg-gray-950 border border-gray-200 dark:border-white/10 rounded-3xl p-8 shadow-xl transition-colors duration-300">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Send us a message</h3>
-              
+            <div
+              id="contactform"
+              className="bg-white dark:bg-gray-950 border border-gray-200 dark:border-white/10 rounded-3xl p-8 shadow-xl transition-colors duration-300"
+            >
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                Send us a message
+              </h3>
+
               {success && (
                 <div className="bg-green-50 text-green-700 dark:bg-green-500/10 dark:border-green-500/20 dark:text-green-400 px-4 py-3 rounded-xl mb-6">
                   Thank you for your message! We will get back to you shortly.
@@ -101,7 +135,9 @@ export default function ContactSection() {
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Full Name</label>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">
+                    Full Name
+                  </label>
                   <input
                     type="text"
                     name="name"
@@ -113,7 +149,9 @@ export default function ContactSection() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Email Address</label>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">
+                    Email Address
+                  </label>
                   <input
                     type="email"
                     name="email"
@@ -125,7 +163,9 @@ export default function ContactSection() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Message</label>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">
+                    Message
+                  </label>
                   <textarea
                     name="message"
                     required

@@ -17,7 +17,7 @@ export default function HomePage() {
     total_houses: 0,
     total_renters: 0,
     total_owners: 0,
-    cities_covered: 0
+    cities_covered: 0,
   });
 
   useEffect(() => {
@@ -36,30 +36,32 @@ export default function HomePage() {
     {
       name: "Shambel Kibre",
       role: "Renter",
-      content: "I found a beautiful house in just two days using HouseRental. The virtual tour feature saved me so much time!",
+      content:
+        "I found a beautiful house in just two days using HouseRental. The virtual tour feature saved me so much time!",
     },
     {
       name: "Sami Abera",
       role: "Property Owner",
-      content: "Managing my properties has never been easier. The digital agreements and tenant verification give me peace of mind.",
+      content:
+        "Managing my properties has never been easier. The digital agreements and tenant verification give me peace of mind.",
     },
     {
       name: "Belete Derje",
       role: "Renter",
-      content: "The communication with owners is seamless. I highly recommend this platform to anyone looking for a stress-free renting experience.",
-    }
+      content:
+        "The communication with owners is seamless. I highly recommend this platform to anyone looking for a stress-free renting experience.",
+    },
   ];
 
   return (
     <div className="w-full bg-white dark:bg-black text-gray-900 dark:text-white transition-colors duration-300">
       {/* Hero Section */}
       <div className="relative w-full h-screen overflow-hidden flex flex-col justify-end">
-        <img
-          src={houseBg}
-          alt="Luxury Home"
-          className="absolute inset-0 w-full h-full object-cover z-0 opacity-60"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-0"></div>
+        <div
+          className="absolute inset-0 w-full h-full bg-cover bg-center z-0"
+          style={{ backgroundImage: `url(${houseBg})` }}
+        ></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent z-0 dark:bg-black/50"></div>
 
         <div className="relative z-10 px-6 md:px-12 lg:px-16 pb-16 lg:pb-24 w-full">
           <div className="max-w-4xl">
@@ -79,7 +81,7 @@ export default function HomePage() {
             <FadeIn delay={1200} duration={1000} className="mb-8">
               <HeroSearch />
             </FadeIn>
-            
+
             <FadeIn delay={1400} duration={1000}>
               <div className="flex gap-4">
                 <span className="liquid-glass border border-white/20 px-4 py-2 rounded-full text-sm">
@@ -101,36 +103,56 @@ export default function HomePage() {
       <section className="py-24 bg-gray-50 dark:bg-gray-900 border-t border-gray-100 dark:border-white/10 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">How HouseRental Works</h2>
-            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Our streamlined process makes renting or listing a property as simple as possible.</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              How HouseRental Works
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Our streamlined process makes renting or listing a property as
+              simple as possible.
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-12 relative">
             {/* Connecting line (desktop only) */}
             <div className="hidden md:block absolute top-12 left-1/6 right-1/6 h-0.5 bg-gray-300 dark:bg-gray-800 -z-10 transition-colors duration-300"></div>
-            
+
             <FadeIn delay={0} className="text-center">
               <div className="w-24 h-24 mx-auto bg-blue-600 rounded-full flex items-center justify-center text-3xl mb-6 shadow-xl shadow-blue-600/20 border-4 border-white dark:border-gray-900 transition-colors duration-300">
                 🔍
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">1. Find Your Place</h3>
-              <p className="text-gray-600 dark:text-gray-400">Search through verified listings with high-quality photos and detailed descriptions.</p>
+              <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">
+                1. Find Your Place
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                Search through verified listings with high-quality photos and
+                detailed descriptions.
+              </p>
             </FadeIn>
 
             <FadeIn delay={200} className="text-center">
               <div className="w-24 h-24 mx-auto bg-blue-600 rounded-full flex items-center justify-center text-3xl mb-6 shadow-xl shadow-blue-600/20 border-4 border-white dark:border-gray-900 transition-colors duration-300">
                 📅
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">2. Request a Visit</h3>
-              <p className="text-gray-600 dark:text-gray-400">Schedule a convenient time to view the property physically or take a virtual tour.</p>
+              <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">
+                2. Request a Visit
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                Schedule a convenient time to view the property physically or
+                take a virtual tour.
+              </p>
             </FadeIn>
 
             <FadeIn delay={400} className="text-center">
               <div className="w-24 h-24 mx-auto bg-blue-600 rounded-full flex items-center justify-center text-3xl mb-6 shadow-xl shadow-blue-600/20 border-4 border-white dark:border-gray-900 transition-colors duration-300">
                 ✍️
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">3. Sign Digitally</h3>
-              <p className="text-gray-600 dark:text-gray-400">Review and sign your rental agreement securely online. No paperwork needed.</p>
+              <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">
+                3. Sign Digitally
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                Review and sign your rental agreement securely online. No
+                paperwork needed.
+              </p>
             </FadeIn>
           </div>
         </div>
@@ -144,25 +166,33 @@ export default function HomePage() {
               <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-500 mb-2">
                 <Counter end={stats.total_houses} />
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 font-medium">Available Houses</p>
+              <p className="text-gray-600 dark:text-gray-400 font-medium">
+                Available Houses
+              </p>
             </div>
             <div className="text-center">
               <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-500 mb-2">
                 <Counter end={stats.total_renters} />
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 font-medium">Happy Renters</p>
+              <p className="text-gray-600 dark:text-gray-400 font-medium">
+                Happy Renters
+              </p>
             </div>
             <div className="text-center">
               <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-500 mb-2">
                 <Counter end={stats.total_owners} />
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 font-medium">Verified Owners</p>
+              <p className="text-gray-600 dark:text-gray-400 font-medium">
+                Verified Owners
+              </p>
             </div>
             <div className="text-center">
               <h3 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-500 mb-2">
                 <Counter end={stats.cities_covered} />
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 font-medium">Cities Covered</p>
+              <p className="text-gray-600 dark:text-gray-400 font-medium">
+                Cities Covered
+              </p>
             </div>
           </div>
         </div>
@@ -171,8 +201,12 @@ export default function HomePage() {
       {/* Testimonials */}
       <section className="py-24 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-white/10 transition-colors duration-300">
         <div className="text-center mb-16 px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">What Our Users Say</h2>
-          <p className="text-gray-600 dark:text-gray-400">Don't just take our word for it.</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            What Our Users Say
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400">
+            Don't just take our word for it.
+          </p>
         </div>
         <TestimonialCarousel testimonials={dummyTestimonials} />
       </section>
@@ -185,22 +219,30 @@ export default function HomePage() {
         <section className="py-24 relative overflow-hidden bg-blue-600 dark:bg-blue-900/20 transition-colors duration-300">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&q=80')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
           <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Own a property?</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Own a property?
+            </h2>
             <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-              Join thousands of property owners who are already managing their rentals efficiently on our platform.
+              Join thousands of property owners who are already managing their
+              rentals efficiently on our platform.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link to="/register" className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl font-bold text-lg transition-colors shadow-lg shadow-blue-600/30">
+              <Link
+                to="/register"
+                className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl font-bold text-lg transition-colors shadow-lg shadow-blue-600/30"
+              >
                 List Your Property
               </Link>
-              <Link to="/services" className="bg-transparent border-2 border-white hover:bg-white hover:text-black text-white px-8 py-4 rounded-xl font-bold text-lg transition-colors">
+              <Link
+                to="/services"
+                className="bg-transparent border-2 border-white hover:bg-white hover:text-black text-white px-8 py-4 rounded-xl font-bold text-lg transition-colors"
+              >
                 Learn More
               </Link>
             </div>
           </div>
         </section>
       )}
-
     </div>
   );
 }
