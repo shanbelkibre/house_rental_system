@@ -17,17 +17,31 @@ export const createHouse = (payload) => api.post("/houses", payload);
 export const updateHouse = (id, payload) => api.put(`/houses/${id}`, payload);
 export const deleteHouse = (id) => api.delete(`/houses/${id}`);
 export const uploadHouseImage = (id, formData) =>
-  api.post(`/houses/${id}/images`, formData, {
-    headers: { "Content-Type": "multipart/form-data" },
-  });
+  api.post(`/houses/${id}/images`, formData);
 export const deleteHouseImage = (houseId, imageId) =>
   api.delete(`/houses/${houseId}/images/${imageId}`);
+
+export const uploadMultipleHouseImages = (houseId, formData, onUploadProgress) =>
+  api.post(`/houses/${houseId}/images/multiple`, formData, {
+    onUploadProgress,
+  });
+
+export const uploadLicenseImage = (houseId, formData) =>
+  api.post(`/houses/${houseId}/license`, formData);
+
+export const reorderImages = (houseId, imageIds) =>
+  api.put(`/houses/${houseId}/images/reorder`, { image_ids: imageIds });
+
+export const setPrimaryImage = (houseId, imageId) =>
+  api.put(`/houses/${houseId}/images/${imageId}/primary`);
+
 export const getMyHouses = () => api.get("/my-houses");
 
 // ===================== Requests =====================
 export const createRequest = (payload) => api.post("/requests", payload);
 export const updateRequest = (id, status) =>
   api.put(`/requests/${id}`, { status });
+export const deleteRequest = (id) => api.delete(`/requests/${id}`);
 export const getMyRequests = () => api.get("/my-requests");
 export const getOwnerRequests = () => api.get("/owner-requests");
 
@@ -49,6 +63,7 @@ export const getMyVisits = () => api.get("/my-visits");
 // ===================== Agreements =====================
 export const createAgreement = (payload) => api.post("/agreements", payload);
 export const confirmAgreement = (id) => api.put(`/agreements/${id}/confirm`);
+export const terminateAgreement = (id) => api.put(`/agreements/${id}/terminate`);
 export const getMyAgreements = () => api.get("/my-agreements");
 
 // ===================== Notifications =====================
@@ -94,5 +109,10 @@ export const updateSubscriptionPlan = (id, payload) =>
   api.put(`/admin/subscription-plans/${id}`, payload);
 export const deleteSubscriptionPlan = (id) =>
   api.delete(`/admin/subscription-plans/${id}`);
+
+// ===================== Public / Marketing =====================
+export const getStats = () => api.get("/stats");
+export const submitContactForm = (payload) => api.post("/contact", payload);
+export const getTestimonials = () => api.get("/testimonials");
 
 export default api;

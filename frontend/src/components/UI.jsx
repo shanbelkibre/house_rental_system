@@ -39,7 +39,7 @@ export function Badge({ label, color = 'gray' }) {
 // ─── Card ────────────────────────────────────────────────────────────────────
 export function Card({ children, className = '' }) {
   return (
-    <div className={`bg-white rounded-2xl shadow-sm border border-gray-100 p-6 ${className}`}>
+    <div className={`bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-100 dark:border-white/10 p-6 transition-colors duration-300 ${className}`}>
       {children}
     </div>
   );
@@ -67,12 +67,12 @@ export function Button({ children, variant = 'primary', disabled, loading, class
 export function Input({ label, error, className = '', ...props }) {
   return (
     <div className="space-y-1">
-      {label && <label className="block text-sm font-medium text-gray-700">{label}</label>}
+      {label && <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">{label}</label>}
       <input
-        className={`w-full border border-gray-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${error ? 'border-red-400' : ''} ${className}`}
+        className={`w-full bg-white dark:bg-black text-gray-900 dark:text-white border border-gray-300 dark:border-white/20 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${error ? 'border-red-400 dark:border-red-500' : ''} ${className}`}
         {...props}
       />
-      {error && <p className="text-xs text-red-600">{error}</p>}
+      {error && <p className="text-xs text-red-600 dark:text-red-400">{error}</p>}
     </div>
   );
 }
@@ -81,14 +81,14 @@ export function Input({ label, error, className = '', ...props }) {
 export function Select({ label, error, children, className = '', ...props }) {
   return (
     <div className="space-y-1">
-      {label && <label className="block text-sm font-medium text-gray-700">{label}</label>}
+      {label && <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">{label}</label>}
       <select
-        className={`w-full border border-gray-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${error ? 'border-red-400' : ''} ${className}`}
+        className={`w-full bg-white dark:bg-black text-gray-900 dark:text-white border border-gray-300 dark:border-white/20 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 ${error ? 'border-red-400 dark:border-red-500' : ''} ${className}`}
         {...props}
       >
         {children}
       </select>
-      {error && <p className="text-xs text-red-600">{error}</p>}
+      {error && <p className="text-xs text-red-600 dark:text-red-400">{error}</p>}
     </div>
   );
 }
@@ -135,3 +135,8 @@ export function Pagination({ meta, onPage }) {
     </div>
   );
 }
+
+export { default as ImageUploader } from './ImageUploader';
+export { default as ImageGallery } from './ImageGallery';
+export { default as UserAvatar } from './UserAvatar';
+export { default as Dropzone } from './Dropzone';

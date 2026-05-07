@@ -8,7 +8,7 @@ export default function HousesPage() {
   const [meta, setMeta]     = useState(null);
   const [page, setPage]     = useState(1);
   const [loading, setLoading] = useState(true);
-  const [filters, setFilters] = useState({ location: '', min_price: '', max_price: '', rooms: '' });
+  const [filters, setFilters] = useState({ title: '', location: '', min_price: '', max_price: '', rooms: '' });
 
   const fetchHouses = async (p = page, f = filters) => {
     setLoading(true);
@@ -45,7 +45,8 @@ export default function HousesPage() {
       </div>
 
       {/* Filters */}
-      <form onSubmit={handleFilter} className="bg-white rounded-2xl border border-gray-100 p-4 mb-8 grid grid-cols-2 md:grid-cols-4 gap-3">
+      <form onSubmit={handleFilter} className="bg-white rounded-2xl border border-gray-100 p-4 mb-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+        <Input placeholder="Search by name..." value={filters.title} onChange={setF('title')} />
         <Input placeholder="Location..." value={filters.location} onChange={setF('location')} />
         <Input type="number" placeholder="Min price" value={filters.min_price} onChange={setF('min_price')} />
         <Input type="number" placeholder="Max price" value={filters.max_price} onChange={setF('max_price')} />

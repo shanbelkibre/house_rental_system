@@ -23,6 +23,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/houses', [HouseController::class, 'index']);
 Route::get('/houses/{id}', [HouseController::class, 'show']);
 Route::get('/houses/{houseId}/reviews', [ReviewController::class, 'houseReviews']);
+Route::get('/stats', [HouseController::class, 'stats']);
 
 
 // ==================== PROTECTED ROUTES (Require Token) ====================
@@ -40,12 +41,15 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/houses/{id}', [HouseController::class, 'update']);
     Route::delete('/houses/{id}', [HouseController::class, 'destroy']);
     Route::post('/houses/{id}/images', [HouseController::class, 'uploadImage']);
+    Route::post('/houses/{id}/images/multiple', [HouseController::class, 'uploadMultipleImages']);
+    Route::post('/houses/{id}/license', [HouseController::class, 'uploadLicense']);
     Route::delete('/houses/{houseId}/images/{imageId}', [HouseController::class, 'deleteImage']);
     Route::get('/my-houses', [HouseController::class, 'myHouses']);
 
     // ========== RENTAL REQUESTS ==========
     Route::post('/requests', [RequestController::class, 'store']);
     Route::put('/requests/{id}', [RequestController::class, 'update']);
+    Route::delete('/requests/{id}', [RequestController::class, 'destroy']);
     Route::get('/my-requests', [RequestController::class, 'myRequests']);
     Route::get('/owner-requests', [RequestController::class, 'ownerRequests']);
 
@@ -65,6 +69,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // ========== OFFLINE AGREEMENTS ==========
     Route::post('/agreements', [AgreementController::class, 'store']);
     Route::put('/agreements/{id}/confirm', [AgreementController::class, 'confirm']);
+    Route::put('/agreements/{id}/terminate', [AgreementController::class, 'terminate']);
     Route::get('/my-agreements', [AgreementController::class, 'myAgreements']);
 
     // ========== NOTIFICATIONS ==========
@@ -104,3 +109,4 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 });
 
+require base_path('routes/test_upload.php');

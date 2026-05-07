@@ -97,6 +97,28 @@ class AgreementController extends Controller
         ]);
     }
 
+    // ========== TERMINATE/LEAVE AGREEMENT ==========
+    public function terminate(Request $request, $id)
+    {
+        $agreement = Agreement::with('house')->findOrFail($id);
+        $user = $request->user();
+
+        // Only the renter who rented the house can terminate/leave it
+        if ($agreement->renter_id !== $user->id) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+
+        $agreement->update(['status' => 'terminated']);
+
+        // Mark house as available again
+        $agreement->house->update(['status' => 'available']);
+
+        return response()->json([
+            'message' => 'You have left the house successfully',
+            'agreement' => $agreement
+        ]);
+    }
+
     // ========== GET MY AGREEMENTS ==========
     public function myAgreements(Request $request)
     {

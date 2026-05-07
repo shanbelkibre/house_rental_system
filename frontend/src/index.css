@@ -25,7 +25,6 @@ body {
   border: none;
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
   position: relative;
-  overflow: hidden;
 }
 .liquid-glass::before {
   content: '';
@@ -42,3 +41,4 @@ body {
   mask-composite: exclude;
   pointer-events: none;
 }
+@custom-variant dark (&:where(.dark, .dark *));

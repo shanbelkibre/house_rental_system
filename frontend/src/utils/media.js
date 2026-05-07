@@ -19,8 +19,8 @@ export function toStorageUrl(pathOrUrl) {
   if (!pathOrUrl) return null;
   if (typeof pathOrUrl !== "string") return null;
 
-  // Already a full URL
-  if (/^https?:\/\//i.test(pathOrUrl)) return pathOrUrl;
+  // Already a full URL or data/blob URI
+  if (/^(https?:\/\/|data:|blob:)/i.test(pathOrUrl)) return pathOrUrl;
 
   const trimmed = pathOrUrl.replace(/^\/+/, "");
 
