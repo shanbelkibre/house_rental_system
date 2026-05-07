@@ -5,6 +5,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import ScrollToTop from "./components/ScrollToTop";
+import ScrollToTopButton from "./components/ScrollToTopButton";
 
 // Pages
 import HomePage from "./pages/HomePage";
@@ -79,6 +80,7 @@ function App() {
           </main>
           <Footer />
         </div>
+        <ScrollToTopButton />
       </AuthProvider>
     </ThemeProvider>
   );
