@@ -117,7 +117,7 @@ export default function HomePage() {
             <div className="hidden md:block absolute top-12 left-1/6 right-1/6 h-0.5 bg-gray-300 dark:bg-gray-800 -z-10 transition-colors duration-300"></div>
 
             <FadeIn delay={0} className="text-center">
-              <div className="w-24 h-24 mx-auto bg-blue-600 rounded-full flex items-center justify-center text-3xl mb-6 shadow-xl shadow-blue-600/20 border-4 border-white dark:border-gray-900 transition-colors duration-300">
+              <div className="w-24 h-24 mx-auto bg-[#00FFFF] rounded-full flex items-center justify-center text-3xl mb-6 shadow-xl shadow-blue-600/20 border-4 border-white dark:border-gray-900 transition-colors duration-300">
                 🔍
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">
@@ -130,7 +130,7 @@ export default function HomePage() {
             </FadeIn>
 
             <FadeIn delay={200} className="text-center">
-              <div className="w-24 h-24 mx-auto bg-blue-600 rounded-full flex items-center justify-center text-3xl mb-6 shadow-xl shadow-blue-600/20 border-4 border-white dark:border-gray-900 transition-colors duration-300">
+              <div className="w-24 h-24 mx-auto bg-[#00FFFF] rounded-full flex items-center justify-center text-3xl mb-6 shadow-xl shadow-blue-600/20 border-4 border-white dark:border-gray-900 transition-colors duration-300">
                 📅
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">
@@ -143,7 +143,7 @@ export default function HomePage() {
             </FadeIn>
 
             <FadeIn delay={400} className="text-center">
-              <div className="w-24 h-24 mx-auto bg-blue-600 rounded-full flex items-center justify-center text-3xl mb-6 shadow-xl shadow-blue-600/20 border-4 border-white dark:border-gray-900 transition-colors duration-300">
+              <div className="w-24 h-24 mx-auto bg-[#00FFFF] rounded-full flex items-center justify-center text-3xl mb-6 shadow-xl shadow-blue-600/20 border-4 border-white dark:border-gray-900 transition-colors duration-300">
                 ✍️
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">
