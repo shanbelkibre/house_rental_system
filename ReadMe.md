@@ -375,12 +375,12 @@ house_rental_system/
 
 | Aspect         | Your Status                           |
 | -------------- | ------------------------------------- |
-| Architecture   | ✅ 3-Tier (Layered)                    |
-| Separation     | ✅ Frontend & Backend separate folders |
-| Communication  | ✅ API-based (REST)                    |
-| Database       | ✅ MySQL with 10+ tables               |
-| Authentication | ✅ Sanctum token-based                 |
-| Deployment     | ✅ Can deploy independently            |
+| Architecture   |  3-Tier (Layered)                    |
+| Separation     | Frontend & Backend separate folders |
+| Communication  |  API-based (REST)                    |
+| Database       |  MySQL with 10+ tables               |
+| Authentication |  Sanctum token-based                 |
+| Deployment     |  Can deploy independently            |
 
 ```bash
 1. USER ACTION (Presentation Layer)
@@ -427,10 +427,10 @@ house_rental_system/
 │                                                                          │
 │   A complete web platform where:                                         │
 │                                                                          │
-│   🏠 OWNERS → Post houses (after paying subscription)                    │
-│   🔍 RENTERS → Search and request houses                                 │
-│   👑 ADMIN → Approve everything & manage platform                        │
-│   📄 OFFLINE → Physical agreement happens outside the system             │
+│    OWNERS → Post houses (after paying subscription)                    │
+│    RENTERS → Search and request houses                                 │
+│    ADMIN → Approve everything & manage platform                        │
+│    OFFLINE → Physical agreement happens outside the system             │
 │                                                                          │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
