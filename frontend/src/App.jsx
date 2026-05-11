@@ -24,6 +24,8 @@ import MyRequestsPage from "./pages/MyRequestsPage";
 import MyVisitsPage from "./pages/MyVisitsPage";
 import NotificationsPage from "./pages/NotificationsPage";
 import MyAgreementsPage from "./pages/MyAgreementsPage";
+import AgreementPage from "./pages/AgreementPage";
+import CreateAgreementPage from "./pages/CreateAgreementPage";
 import DesignProHero from "./pages/DesignProHero";
 
 // Marketing / Static Pages
@@ -70,6 +72,11 @@ function App() {
                 <Route path="/my-visits" element={<MyVisitsPage />} />
                 <Route path="/notifications" element={<NotificationsPage />} />
                 <Route path="/agreements" element={<MyAgreementsPage />} />
+                <Route
+                  path="/agreements/create"
+                  element={<CreateAgreementPage />}
+                />
+                <Route path="/agreements/:id" element={<AgreementPage />} />
               </Route>
 
               {/* Admin-only */}
