@@ -61,7 +61,7 @@ export default function HomePage() {
           className="absolute inset-0 w-full h-full bg-cover bg-center z-0"
           style={{ backgroundImage: `url(${houseBg})` }}
         ></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent z-0 dark:bg-black/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent z-0"></div>
 
         <div className="relative z-10 px-6 md:px-12 lg:px-16 pb-16 lg:pb-24 w-full">
           <div className="max-w-4xl">
