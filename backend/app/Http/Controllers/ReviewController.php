@@ -29,18 +29,13 @@ class ReviewController extends Controller
 
         $house = House::findOrFail($request->house_id);
 
-        // Check if user has rented this house via request or agreement
-        $hasRentedRequest = RequestRental::where('renter_id', $user->id)
-            ->where('house_id', $request->house_id)
-            ->where('status', 'accepted')
-            ->exists();
-
+        // Only allow review after a confirmed agreement
         $hasAgreement = \App\Models\Agreement::where('renter_id', $user->id)
             ->where('house_id', $request->house_id)
-            ->whereIn('status', ['confirmed', 'terminated'])
+            ->where('status', 'confirmed')
             ->exists();
 
-        if (!$hasRentedRequest && !$hasAgreement) {
+        if (!$hasAgreement) {
             return response()->json([
                 'message' => 'You can only review houses you have rented'
             ], 403);

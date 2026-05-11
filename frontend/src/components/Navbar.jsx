@@ -72,18 +72,22 @@ export default function Navbar() {
               </Link>
             </>
           )}
-          <Link
-            to="/houses"
-            className="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200"
-          >
-            Browse Houses
-          </Link>
-          <a
-            href="/#contact"
-            className="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200"
-          >
-            Contact
-          </a>
+          {(!user || user.role === "renter") && (
+            <Link
+              to="/houses"
+              className="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200"
+            >
+              Browse Houses
+            </Link>
+          )}
+          {(!user || user.role !== "admin") && (
+            <a
+              href="/#contact"
+              className="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200"
+            >
+              Contact
+            </a>
+          )}
 
           {user ? (
             <>
@@ -107,6 +111,12 @@ export default function Navbar() {
                   >
                     Subscription
                   </Link>
+                  <Link
+                    to="/agreements"
+                    className="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200"
+                  >
+                    Agreements
+                  </Link>
                 </>
               )}
               {user.role === "renter" && (
@@ -124,7 +134,7 @@ export default function Navbar() {
                     My Visits
                   </Link>
                   <Link
-                    to="/my-agreements"
+                    to="/agreements"
                     className="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200"
                   >
                     Agreements
@@ -143,7 +153,7 @@ export default function Navbar() {
                 to="/notifications"
                 className="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-200"
               >
-                🔔 Alerts
+                🔔 
               </Link>
               <div className="ml-4 flex items-center gap-2">
                 <UserAvatar
@@ -220,20 +230,24 @@ export default function Navbar() {
               </Link>
             </>
           )}
-          <Link
-            to="/houses"
-            className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2"
-            onClick={() => setMenuOpen(false)}
-          >
-            Browse Houses
-          </Link>
-          <a
-            href="/#contact"
-            className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2"
-            onClick={() => setMenuOpen(false)}
-          >
-            Contact
-          </a>
+          {(!user || user.role === "renter") && (
+            <Link
+              to="/houses"
+              className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2"
+              onClick={() => setMenuOpen(false)}
+            >
+              Browse Houses
+            </Link>
+          )}
+          {(!user || user.role !== "admin") && (
+            <a
+              href="/#contact"
+              className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2"
+              onClick={() => setMenuOpen(false)}
+            >
+              Contact
+            </a>
+          )}
           {user ? (
             <>
               <Link
@@ -241,7 +255,7 @@ export default function Navbar() {
                 className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2"
                 onClick={() => setMenuOpen(false)}
               >
-                🔔 Notifications
+                🔔 
               </Link>
               <Link
                 to="/profile"
@@ -273,6 +287,13 @@ export default function Navbar() {
                   >
                     Subscription
                   </Link>
+                  <Link
+                    to="/agreements"
+                    className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    Agreements
+                  </Link>
                 </>
               )}
               {user.role === "renter" && (
@@ -292,7 +313,7 @@ export default function Navbar() {
                     My Visits
                   </Link>
                   <Link
-                    to="/my-agreements"
+                    to="/agreements"
                     className="block py-2 hover:bg-black/5 dark:hover:bg-white/10 rounded px-2"
                     onClick={() => setMenuOpen(false)}
                   >

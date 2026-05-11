@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../api/axios";
+import { getMyAgreements } from "../services/api";
 import { useAuth } from "../context/AuthContext";
 import {
   Spinner,
@@ -10,7 +11,7 @@ import {
   StarRating,
   Card,
   Modal,
-  Input
+  Input,
 } from "../components/UI";
 import ImageGallery from "../components/ImageGallery";
 import { toStorageUrl } from "../utils/media";
@@ -26,6 +27,7 @@ export default function HouseDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [canReview, setCanReview] = useState(false);
 
   const [reqModal, setReqModal] = useState(false);
   const [reqMsg, setReqMsg] = useState("");
@@ -49,10 +51,28 @@ export default function HouseDetailPage() {
         setAvgRating(rRes.data.average_rating || 0);
       } catch {
         setError("House not found");
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
+
+      if (user?.role === "renter") {
+        try {
+          const agreementsRes = await getMyAgreements();
+          const list = agreementsRes.data?.data || [];
+          const confirmed = list.some(
+            (agreement) =>
+              String(agreement.house?.id) === String(id) &&
+              agreement.status === "confirmed",
+          );
+          setCanReview(confirmed);
+        } catch {
+          setCanReview(false);
+        }
+      } else {
+        setCanReview(false);
+      }
     })();
-  }, [id]);
+  }, [id, user?.role]);
 
   const sendRequest = async () => {
     setError("");
@@ -101,18 +121,26 @@ export default function HouseDetailPage() {
     }
   };
 
-  if (loading) return (
-    <div className="flex justify-center py-20"><Spinner size={12} /></div>
-  );
+  if (loading)
+    return (
+      <div className="flex justify-center py-20">
+        <Spinner size={12} />
+      </div>
+    );
 
-  if (error && !house) return (
-    <div className="max-w-2xl mx-auto px-4 py-16 text-center">
-      <Alert type="error" message={error} />
-      <Button onClick={() => navigate("/houses")} variant="outline" className="mt-4">
-        ← Back to listings
-      </Button>
-    </div>
-  );
+  if (error && !house)
+    return (
+      <div className="max-w-2xl mx-auto px-4 py-16 text-center">
+        <Alert type="error" message={error} />
+        <Button
+          onClick={() => navigate("/houses")}
+          variant="outline"
+          className="mt-4"
+        >
+          ← Back to listings
+        </Button>
+      </div>
+    );
 
   const images = house.images || [];
 
@@ -121,32 +149,35 @@ export default function HouseDetailPage() {
       {success && <Alert type="success" message={success} />}
       {error && <Alert type="error" message={error} />}
 
-      <ImageGallery 
-        images={images} 
+      <ImageGallery
+        images={images}
         isOwner={user?.id === house.owner?.id}
         onDelete={async (imgId) => {
           if (!confirm("Delete this image?")) return;
           try {
-             await api.delete(`/houses/${house.id}/images/${imgId}`);
-             setHouse(prev => ({...prev, images: prev.images.filter(i => i.id !== imgId)}));
-             setSuccess("Image deleted.");
-          } catch(e) {
-             setError("Failed to delete image.");
+            await api.delete(`/houses/${house.id}/images/${imgId}`);
+            setHouse((prev) => ({
+              ...prev,
+              images: prev.images.filter((i) => i.id !== imgId),
+            }));
+            setSuccess("Image deleted.");
+          } catch (e) {
+            setError("Failed to delete image.");
           }
         }}
         onSetPrimary={async (imgId) => {
           try {
-             await api.put(`/houses/${house.id}/images/${imgId}/primary`);
-             setHouse(prev => {
-                const newImgs = [...prev.images];
-                const idx = newImgs.findIndex(i => i.id === imgId);
-                const [item] = newImgs.splice(idx, 1);
-                newImgs.unshift(item);
-                return {...prev, images: newImgs};
-             });
-             setSuccess("Primary image updated.");
-          } catch(e) {
-             setError("Failed to set primary image.");
+            await api.put(`/houses/${house.id}/images/${imgId}/primary`);
+            setHouse((prev) => {
+              const newImgs = [...prev.images];
+              const idx = newImgs.findIndex((i) => i.id === imgId);
+              const [item] = newImgs.splice(idx, 1);
+              newImgs.unshift(item);
+              return { ...prev, images: newImgs };
+            });
+            setSuccess("Primary image updated.");
+          } catch (e) {
+            setError("Failed to set primary image.");
           }
         }}
       />
@@ -156,9 +187,16 @@ export default function HouseDetailPage() {
           <div className="flex items-start justify-between gap-4">
             <div>
               <div className="flex items-center gap-3">
-                <h1 className="text-2xl font-bold text-gray-800">{house.title}</h1>
+                <h1 className="text-2xl font-bold text-gray-800">
+                  {house.title}
+                </h1>
                 {house.type && (
-                  <Badge label={house.type.charAt(0).toUpperCase() + house.type.slice(1)} color="gray" />
+                  <Badge
+                    label={
+                      house.type.charAt(0).toUpperCase() + house.type.slice(1)
+                    }
+                    color="gray"
+                  />
                 )}
               </div>
               <p className="text-gray-500 mt-1">📍 {house.location}</p>
@@ -174,9 +212,16 @@ export default function HouseDetailPage() {
               ETB {Number(house.price).toLocaleString()}
               <span className="text-base font-normal text-gray-400">/mo</span>
             </span>
-            <span className="text-gray-500">🛏 {house.rooms} room{house.rooms !== 1 ? "s" : ""}</span>
-            <span className="text-gray-500">🛁 {house.bathrooms || 1} bath{(house.bathrooms || 1) !== 1 ? "s" : ""}</span>
-            {house.area && <span className="text-gray-500">📐 {house.area} sqm</span>}
+            <span className="text-gray-500">
+              🛏 {house.rooms} room{house.rooms !== 1 ? "s" : ""}
+            </span>
+            <span className="text-gray-500">
+              🛁 {house.bathrooms || 1} bath
+              {(house.bathrooms || 1) !== 1 ? "s" : ""}
+            </span>
+            {house.area && (
+              <span className="text-gray-500">📐 {house.area} sqm</span>
+            )}
             <span className="flex items-center gap-1">
               <StarRating value={Math.round(avgRating)} />
               <span className="text-sm text-gray-500">({avgRating})</span>
@@ -185,7 +230,8 @@ export default function HouseDetailPage() {
 
           {house.availability_date && (
             <p className="text-sm font-medium text-blue-600 bg-blue-50 inline-block px-3 py-1 rounded-full">
-              📅 Available from: {new Date(house.availability_date).toLocaleDateString()}
+              📅 Available from:{" "}
+              {new Date(house.availability_date).toLocaleDateString()}
             </p>
           )}
 
@@ -193,8 +239,11 @@ export default function HouseDetailPage() {
             <Card>
               <h2 className="font-semibold text-gray-700 mb-3">Amenities</h2>
               <div className="flex flex-wrap gap-2">
-                {house.amenities.map(amenity => (
-                  <span key={amenity} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm border border-gray-200">
+                {house.amenities.map((amenity) => (
+                  <span
+                    key={amenity}
+                    className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm border border-gray-200"
+                  >
                     {amenity}
                   </span>
                 ))}
@@ -217,9 +266,14 @@ export default function HouseDetailPage() {
               <p className="text-sm text-gray-400">No reviews yet.</p>
             ) : (
               reviews.map((r) => (
-                <div key={r.id} className="border-b border-gray-50 pb-3 mb-3 last:border-0 last:mb-0">
+                <div
+                  key={r.id}
+                  className="border-b border-gray-50 pb-3 mb-3 last:border-0 last:mb-0"
+                >
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-sm font-medium text-gray-700">{r.renter?.name}</span>
+                    <span className="text-sm font-medium text-gray-700">
+                      {r.renter?.name}
+                    </span>
                     <StarRating value={r.rating} />
                   </div>
                   <p className="text-sm text-gray-600">{r.comment}</p>
@@ -234,45 +288,102 @@ export default function HouseDetailPage() {
             <p className="text-sm font-medium text-gray-500 mb-1">Owner</p>
             <p className="font-semibold text-gray-800">{house.owner?.name}</p>
             {house.owner?.phone && (
-              <p className="text-sm text-gray-500 mt-1">📞 {house.owner.phone}</p>
+              <p className="text-sm text-gray-500 mt-1">
+                📞 {house.owner.phone}
+              </p>
             )}
           </Card>
 
-          {(user?.role === "admin" || user?.id === house.owner?.id) && house.license_image && (
-            <Card>
-              <h2 className="font-semibold text-gray-700 mb-2">Ownership Document (Karta)</h2>
-              <div className="border border-gray-200 rounded-xl overflow-hidden bg-gray-50 flex items-center justify-center p-2">
-                {house.license_image.endsWith(".pdf") ? (
-                  <a href={toStorageUrl(house.license_image)} target="_blank" rel="noreferrer" className="text-blue-600 hover:underline flex items-center gap-2 text-sm">
-                    📄 View PDF Document
-                  </a>
-                ) : (
-                  <a href={toStorageUrl(house.license_image)} target="_blank" rel="noreferrer" title="Click to view full size">
-                    <img src={toStorageUrl(house.license_image)} alt="House License/Karta" className="max-w-full h-auto rounded cursor-pointer hover:opacity-90 transition-opacity" />
-                  </a>
-                )}
-              </div>
-            </Card>
-          )}
+          {(user?.role === "admin" || user?.id === house.owner?.id) &&
+            house.license_image && (
+              <Card>
+                <h2 className="font-semibold text-gray-700 mb-2">
+                  Ownership Document (Karta)
+                </h2>
+                <div className="border border-gray-200 rounded-xl overflow-hidden bg-gray-50 flex items-center justify-center p-2">
+                  {house.license_image.endsWith(".pdf") ? (
+                    <a
+                      href={toStorageUrl(house.license_image)}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-blue-600 hover:underline flex items-center gap-2 text-sm"
+                    >
+                      📄 View PDF Document
+                    </a>
+                  ) : (
+                    <a
+                      href={toStorageUrl(house.license_image)}
+                      target="_blank"
+                      rel="noreferrer"
+                      title="Click to view full size"
+                    >
+                      <img
+                        src={toStorageUrl(house.license_image)}
+                        alt="House License/Karta"
+                        className="max-w-full h-auto rounded cursor-pointer hover:opacity-90 transition-opacity"
+                      />
+                    </a>
+                  )}
+                </div>
+              </Card>
+            )}
 
           {user?.role === "renter" && house.status === "available" && (
             <Card className="space-y-3">
-              <Button onClick={() => setReqModal(true)} className="w-full">📋 Request to Rent</Button>
-              <Button onClick={() => setVisitModal(true)} variant="outline" className="w-full">📅 Schedule Visit</Button>
-              <Button onClick={() => setRevModal(true)} variant="secondary" className="w-full">⭐ Leave Review</Button>
+              <Button onClick={() => setReqModal(true)} className="w-full">
+                📋 Request to Rent
+              </Button>
+              <Button
+                onClick={() => setVisitModal(true)}
+                variant="outline"
+                className="w-full"
+              >
+                📅 Schedule Visit
+              </Button>
+              {canReview && (
+                <Button
+                  onClick={() => setRevModal(true)}
+                  variant="secondary"
+                  className="w-full"
+                >
+                  ⭐ Leave Review
+                </Button>
+              )}
             </Card>
           )}
 
+          {user?.role === "renter" &&
+            house.status !== "available" &&
+            canReview && (
+              <Card className="space-y-3">
+                <Button
+                  onClick={() => setRevModal(true)}
+                  variant="secondary"
+                  className="w-full"
+                >
+                  ⭐ Leave Review
+                </Button>
+              </Card>
+            )}
+
           {!user && (
             <Card>
-              <p className="text-sm text-gray-500 text-center mb-2">Login to rent or visit</p>
-              <Button onClick={() => navigate("/login")} className="w-full">Login</Button>
+              <p className="text-sm text-gray-500 text-center mb-2">
+                Login to rent or visit
+              </p>
+              <Button onClick={() => navigate("/login")} className="w-full">
+                Login
+              </Button>
             </Card>
           )}
         </div>
       </div>
 
-      <Modal open={reqModal} onClose={() => setReqModal(false)} title="Send Rental Request">
+      <Modal
+        open={reqModal}
+        onClose={() => setReqModal(false)}
+        title="Send Rental Request"
+      >
         <div className="space-y-4">
           <textarea
             className="w-full border border-gray-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 h-28 resize-none"
@@ -281,13 +392,19 @@ export default function HouseDetailPage() {
             onChange={(e) => setReqMsg(e.target.value)}
           />
           <div className="flex gap-2 justify-end">
-            <Button variant="outline" onClick={() => setReqModal(false)}>Cancel</Button>
+            <Button variant="outline" onClick={() => setReqModal(false)}>
+              Cancel
+            </Button>
             <Button onClick={sendRequest}>Send Request</Button>
           </div>
         </div>
       </Modal>
 
-      <Modal open={visitModal} onClose={() => setVisitModal(false)} title="Schedule a Visit">
+      <Modal
+        open={visitModal}
+        onClose={() => setVisitModal(false)}
+        title="Schedule a Visit"
+      >
         <div className="space-y-4">
           <Input
             label="Visit Date & Time"
@@ -296,16 +413,24 @@ export default function HouseDetailPage() {
             onChange={(e) => setVisitDate(e.target.value)}
           />
           <div className="flex gap-2 justify-end">
-            <Button variant="outline" onClick={() => setVisitModal(false)}>Cancel</Button>
+            <Button variant="outline" onClick={() => setVisitModal(false)}>
+              Cancel
+            </Button>
             <Button onClick={scheduleVisit}>Schedule</Button>
           </div>
         </div>
       </Modal>
 
-      <Modal open={revModal} onClose={() => setRevModal(false)} title="Leave a Review">
+      <Modal
+        open={revModal}
+        onClose={() => setRevModal(false)}
+        title="Leave a Review"
+      >
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Rating</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Rating
+            </label>
             <div className="flex gap-2">
               {[1, 2, 3, 4, 5].map((n) => (
                 <button
@@ -319,7 +444,9 @@ export default function HouseDetailPage() {
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Comment</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Comment
+            </label>
             <textarea
               className="w-full border border-gray-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 h-24 resize-none"
               value={revComment}
@@ -327,7 +454,9 @@ export default function HouseDetailPage() {
             />
           </div>
           <div className="flex gap-2 justify-end">
-            <Button variant="outline" onClick={() => setRevModal(false)}>Cancel</Button>
+            <Button variant="outline" onClick={() => setRevModal(false)}>
+              Cancel
+            </Button>
             <Button onClick={submitReview}>Submit Review</Button>
           </div>
         </div>

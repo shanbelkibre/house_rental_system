@@ -87,10 +87,7 @@ class RequestController extends Controller
         $oldStatus = $rentalRequest->status;
         $rentalRequest->update(['status' => $request->status]);
 
-        // If accepted, mark house as rented
-        if ($request->status === 'accepted') {
-            $rentalRequest->house->update(['status' => 'rented']);
-        }
+        // Keep house available until agreement is confirmed
 
         // Notify renter
         $statusText = $request->status === 'accepted' ? 'accepted' : 'rejected';
@@ -115,11 +112,6 @@ class RequestController extends Controller
         // Only the renter who made the request can cancel it
         if ($rentalRequest->renter_id !== $user->id) {
             return response()->json(['message' => 'Unauthorized'], 403);
-        }
-
-        // If it was accepted, we must revert the house status to available
-        if ($rentalRequest->status === 'accepted') {
-            $rentalRequest->house->update(['status' => 'available']);
         }
 
         $rentalRequest->delete();

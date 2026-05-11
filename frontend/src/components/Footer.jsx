@@ -9,10 +9,10 @@ export default function Footer() {
         {/* Column 1: Brand & Social */}
         <div className="space-y-4">
           <Link to="/" className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white flex items-center">
-            🏠 HouseRental
+            HouseRental
           </Link>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            Your trusted platform for finding the perfect home or managing your rental properties securely and easily.
+            Our trusted platform for finding the perfect home or managing your rental properties securely and easily.
           </p>
           <div className="flex space-x-4 pt-2">
   {/* GitHub */}
