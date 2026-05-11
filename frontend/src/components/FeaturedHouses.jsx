@@ -41,23 +41,26 @@ export default function FeaturedHouses() {
   }
 
   return (
-    <section className="py-20 bg-black relative">
+    <section className="py-20 bg-white dark:bg-black relative">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
         <div className="flex justify-between items-end mb-12">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Featured Properties
             </h2>
-            <p className="text-gray-400 max-w-2xl">
-              Hand-picked selection of quality homes available for rent right now.
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl">
+              Hand-picked selection of quality homes available for rent right
+              now.
             </p>
           </div>
-          <Link 
-            to="/houses" 
-            className="hidden md:flex items-center text-blue-500 hover:text-blue-400 font-medium group"
+          <Link
+            to="/houses"
+            className="hidden md:flex items-center text-blue-600 dark:text-blue-500 hover:text-blue-500 dark:hover:text-blue-400 font-medium group"
           >
             View all properties
-            <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+            <span className="ml-2 group-hover:translate-x-1 transition-transform">
+              →
+            </span>
           </Link>
         </div>
 
@@ -68,12 +71,14 @@ export default function FeaturedHouses() {
         </div>
 
         <div className="mt-10 md:hidden text-center">
-          <Link 
-            to="/houses" 
-            className="inline-flex items-center text-blue-500 hover:text-blue-400 font-medium group"
+          <Link
+            to="/houses"
+            className="inline-flex items-center text-blue-600 dark:text-blue-500 hover:text-blue-500 dark:hover:text-blue-400 font-medium group"
           >
             View all properties
-            <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+            <span className="ml-2 group-hover:translate-x-1 transition-transform">
+              →
+            </span>
           </Link>
         </div>
       </div>
