@@ -437,7 +437,7 @@ house_rental_system/
 
 ---
 
-# 🎯 **PART 2: USER ROLES & PERMISSIONS**
+#  **PART 2: USER ROLES & PERMISSIONS**
 
 ## **Three User Types**
 
@@ -549,9 +549,9 @@ house_rental_system/
 │                              │ {user,token} │     │ in localStorage│     │
 │                              └──────────────┘     └──────────────┘       │
 │                                                                          │
-│  📝 API CALL: POST /api/login                                            │
-│  📦 REQUEST BODY: {email, password}                                      │
-│  ✅ RESPONSE: {user, token}                                              │
+│  API CALL: POST /api/login                                            │
+│   REQUEST BODY: {email, password}                                      │
+│  RESPONSE: {user, token}                                              │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -581,10 +581,10 @@ house_rental_system/
 │                              │ (30 days)    │     │ houses       │       │
 │                              └──────────────┘     └──────────────┘       │
 │                                                                          │
-│  📝 API CALL: POST /api/subscribe (requires auth)                        │
-│  📦 REQUEST BODY: {payment_method, amount}                               │
-│  ✅ RESPONSE: {subscription, payment}                                    │
-│  ⚠️ CONDITION: Owner MUST have active subscription to post houses        │
+│   API CALL: POST /api/subscribe (requires auth)                        │
+│   REQUEST BODY: {payment_method, amount}                               │
+│   RESPONSE: {subscription, payment}                                    │
+│   CONDITION: Owner MUST have active subscription to post houses        │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -615,11 +615,11 @@ house_rental_system/
 │                              │ to approve   │     │ renters yet  │       │
 │                              └──────────────┘     └──────────────┘       │
 │                                                                          │
-│  📝 API CALLS:                                                           │
+│   API CALLS:                                                           │
 │  1. POST /api/houses - Create house                                      │
 │  2. POST /api/houses/{id}/images - Upload each image                     │
-│  📦 REQUEST BODY: {title, description, price, location, rooms}           │
-│  ✅ RESPONSE: {message: "House submitted for approval", house}           │
+│  REQUEST BODY: {title, description, price, location, rooms}           │
+│  RESPONSE: {message: "House submitted for approval", house}           │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -657,8 +657,8 @@ house_rental_system/
 │                              │ approved"    │     │              │       │
 │                              └──────────────┘     └──────────────┘       │
 │                                                                          │
-│  📝 API CALL: PUT /api/admin/houses/{id}/approve (Admin only)            │
-│  ✅ RESPONSE: {message: "House approved", house}                         │
+│   API CALL: PUT /api/admin/houses/{id}/approve (Admin only)            │
+│  RESPONSE: {message: "House approved", house}                         │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -699,7 +699,7 @@ house_rental_system/
 │                              │ reviews      │     │              │       │
 │                              └──────────────┘     └──────────────┘       │
 │                                                                          │
-│  📝 API CALLS:                                                           │
+│  API CALLS:                                                           │
 │  1. GET /api/houses?min_price=&max_price=&rooms=&location=&sort=latest   │
 │  2. GET /api/houses/{id}                                                 │
 │  3. GET /api/houses/{id}/reviews                                         │
@@ -733,9 +733,9 @@ house_rental_system/
 │                              │ request"     │     │ confirmation │       │
 │                              └──────────────┘     └──────────────┘       │
 │                                                                          │
-│  📝 API CALL: POST /api/requests (Renter only)                           │
-│  📦 REQUEST BODY: {house_id, message}                                    │
-│  ✅ RESPONSE: {message: "Rental request sent", request}                  │
+│   API CALL: POST /api/requests (Renter only)                           │
+│   REQUEST BODY: {house_id, message}                                    │
+│  RESPONSE: {message: "Rental request sent", request}                  │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -773,9 +773,9 @@ house_rental_system/
 │                    │ as "rented"  │      │ rejected     │               │
 │                    └──────────────┘      └──────────────┘               │
 │                                                                          │
-│  📝 API CALL: PUT /api/requests/{id} (Owner only)                        │
-│  📦 REQUEST BODY: {status: "accepted" or "rejected"}                     │
-│  ✅ RESPONSE: {message: "Request accepted", request}                     │
+│   API CALL: PUT /api/requests/{id} (Owner only)                        │
+│   REQUEST BODY: {status: "accepted" or "rejected"}                     │
+│   RESPONSE: {message: "Request accepted", request}                     │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -1025,9 +1025,9 @@ house_rental_system/
 
 | Order | Role       | Status in Your Project                            |
 | ----- | ---------- | ------------------------------------------------- |
-| 1st   | **ADMIN**  | ✅ Built (Dashboard, Approve Houses, Manage Users) |
-| 2nd   | **OWNER**  | ✅ Built (Post houses, Subscribe, Manage requests) |
-| 3rd   | **RENTER** | ✅ Built (Browse, Request, Review)                 |
+| 1st   | **ADMIN**  | Built (Dashboard, Approve Houses, Manage Users) |
+| 2nd   | **OWNER**  |  Built (Post houses, Subscribe, Manage requests) |
+| 3rd   | **RENTER** |  Built (Browse, Request, Review)                 |
 
 ```
 ```
