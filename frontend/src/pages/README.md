@@ -1,0 +1,27 @@
+# Pages
+
+- [frontend/src/pages/AboutPage.jsx](frontend/src/pages/AboutPage.jsx): About page with stats, story, and team section.
+- [frontend/src/pages/AdminPage.jsx](frontend/src/pages/AdminPage.jsx): Admin dashboard for reports, users, listings, and plans.
+- [frontend/src/pages/AgreementPage.jsx](frontend/src/pages/AgreementPage.jsx): Agreement details with confirmation and owner info.
+- [frontend/src/pages/BlogPage.jsx](frontend/src/pages/BlogPage.jsx): Blog landing page with featured and grid posts.
+- [frontend/src/pages/CreateAgreementPage.jsx](frontend/src/pages/CreateAgreementPage.jsx): Owner flow to create agreements from accepted requests.
+- [frontend/src/pages/CreateHousePage.jsx](frontend/src/pages/CreateHousePage.jsx): Owner form to create a house with images and license.
+- [frontend/src/pages/Dashboard.jsx](frontend/src/pages/Dashboard.jsx): Role-based dashboard for owner, renter, or admin.
+- [frontend/src/pages/DesignProHero.tsx](frontend/src/pages/DesignProHero.tsx): Marketing hero demo page with video background.
+- [frontend/src/pages/FAQPage.jsx](frontend/src/pages/FAQPage.jsx): Searchable FAQ with category filters.
+- [frontend/src/pages/HomePage.jsx](frontend/src/pages/HomePage.jsx): Landing page with hero, stats, and featured content.
+- [frontend/src/pages/HouseDetailPage.jsx](frontend/src/pages/HouseDetailPage.jsx): House detail view with requests, visits, and reviews.
+- [frontend/src/pages/HousesPage.jsx](frontend/src/pages/HousesPage.jsx): Search and filter listing page for houses.
+- [frontend/src/pages/LoginPage.jsx](frontend/src/pages/LoginPage.jsx): User login form.
+- [frontend/src/pages/MyAgreementsPage.jsx](frontend/src/pages/MyAgreementsPage.jsx): List and manage user agreements.
+- [frontend/src/pages/MyHousesPage.jsx](frontend/src/pages/MyHousesPage.jsx): Owner listing management with images and documents.
+- [frontend/src/pages/MyRequestsPage.jsx](frontend/src/pages/MyRequestsPage.jsx): Renter request list and cancel flow.
+- [frontend/src/pages/MyVisitsPage.jsx](frontend/src/pages/MyVisitsPage.jsx): Renter/owner visit schedule list.
+- [frontend/src/pages/NotificationsPage.jsx](frontend/src/pages/NotificationsPage.jsx): Notification inbox with mark/read/delete.
+- [frontend/src/pages/OwnerRequestsPage.jsx](frontend/src/pages/OwnerRequestsPage.jsx): Owner view to accept or reject rental requests.
+- [frontend/src/pages/PrivacyPage.jsx](frontend/src/pages/PrivacyPage.jsx): Privacy policy content page.
+- [frontend/src/pages/ProfilePage.jsx](frontend/src/pages/ProfilePage.jsx): Profile editor and password change.
+- [frontend/src/pages/RegisterPage.jsx](frontend/src/pages/RegisterPage.jsx): User registration form.
+- [frontend/src/pages/ServicesPage.jsx](frontend/src/pages/ServicesPage.jsx): Services marketing page for renters and owners.
+- [frontend/src/pages/SubscriptionPage.jsx](frontend/src/pages/SubscriptionPage.jsx): Subscription status and payment flow.
+- [frontend/src/pages/TermsPage.jsx](frontend/src/pages/TermsPage.jsx): Terms and conditions content page.

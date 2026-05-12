@@ -1,0 +1,26 @@
+# Components
+
+- [frontend/src/components/Accordion.jsx](frontend/src/components/Accordion.jsx): Expandable FAQ accordion item with animated toggle.
+- [frontend/src/components/AgreementCard.jsx](frontend/src/components/AgreementCard.jsx): Displays agreement summary with status badge and link.
+- [frontend/src/components/AnimatedHeading.jsx](frontend/src/components/AnimatedHeading.jsx): Animated heading text reveal by character.
+- [frontend/src/components/ContactSection.jsx](frontend/src/components/ContactSection.jsx): Contact info and contact form section.
+- [frontend/src/components/Counter.jsx](frontend/src/components/Counter.jsx): Count-up animation for statistics.
+- [frontend/src/components/Dropzone.jsx](frontend/src/components/Dropzone.jsx): Generic drag-and-drop file input wrapper.
+- [frontend/src/components/FadeIn.jsx](frontend/src/components/FadeIn.jsx): Fade-in wrapper for staggered reveal.
+- [frontend/src/components/FeaturedHouses.jsx](frontend/src/components/FeaturedHouses.jsx): Fetches and renders featured house cards.
+- [frontend/src/components/Footer.jsx](frontend/src/components/Footer.jsx): Site footer with links and contact info.
+- [frontend/src/components/HeroSearch.jsx](frontend/src/components/HeroSearch.jsx): Search form for location, price, and rooms.
+- [frontend/src/components/HouseCard.jsx](frontend/src/components/HouseCard.jsx): Card view for a single house listing.
+- [frontend/src/components/ImageGallery.jsx](frontend/src/components/ImageGallery.jsx): Main image viewer with thumbnails and fullscreen mode.
+- [frontend/src/components/ImageUploader.jsx](frontend/src/components/ImageUploader.jsx): Drag-and-drop uploader with image ordering and type tags.
+- [frontend/src/components/Navbar.jsx](frontend/src/components/Navbar.jsx): Main navigation with role-aware links and theme toggle.
+- [frontend/src/components/OwnerReliabilityCard.jsx](frontend/src/components/OwnerReliabilityCard.jsx): Owner profile summary with rating and metrics.
+- [frontend/src/components/ProtectedRoute.jsx](frontend/src/components/ProtectedRoute.jsx): Route guard for authenticated and role-based routes.
+- [frontend/src/components/ScrollToTopButton.jsx](frontend/src/components/ScrollToTopButton.jsx): Floating button to scroll to top.
+- [frontend/src/components/ScrollToTop.jsx](frontend/src/components/ScrollToTop.jsx): Scroll reset on route changes.
+- [frontend/src/components/ServiceCard.jsx](frontend/src/components/ServiceCard.jsx): Marketing card used on services pages.
+- [frontend/src/components/ShinyText.tsx](frontend/src/components/ShinyText.tsx): Animated gradient text using Framer Motion.
+- [frontend/src/components/TeamMember.jsx](frontend/src/components/TeamMember.jsx): Team member profile card.
+- [frontend/src/components/TestimonialCarousel.jsx](frontend/src/components/TestimonialCarousel.jsx): Auto-advancing testimonial slider.
+- [frontend/src/components/UI.jsx](frontend/src/components/UI.jsx): Shared UI primitives like buttons, badges, modals, and inputs.
+- [frontend/src/components/UserAvatar.jsx](frontend/src/components/UserAvatar.jsx): User avatar with optional dropdown menu.
