@@ -338,6 +338,7 @@ class AdminController extends Controller
         );
     }
 
+    
     public function createReport(Request $request)
     {
         $data = $request->validate([
