@@ -44,7 +44,7 @@ export default function Navbar() {
             to="/"
             className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white flex items-center hover:text-blue-600 dark:hover:text-blue-300 transition-colors"
           >
-            🏠 HouseRental
+            DB HouseRental
           </Link>
         </div>
 
